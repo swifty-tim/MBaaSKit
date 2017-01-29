@@ -1,4 +1,7 @@
 # MBaaSKit
+Framework to provide communication to MBaaSKit Server. Provides 
+functionality to send and retrieve objects from server. 
+
 
 [![CI Status](http://img.shields.io/travis/collegboi/MBaaSKit.svg?style=flat)](https://travis-ci.org/collegboi/MBaaSKit)
 [![Version](https://img.shields.io/cocoapods/v/MBaaSKit.svg?style=flat)](http://cocoapods.org/pods/MBaaSKit)
@@ -40,7 +43,6 @@ struct TestObject: JSONSerializable {
 
     init( dict: [String:Any] ) {
         self.name = dict["name"] as! String
-
     }
 }
 
