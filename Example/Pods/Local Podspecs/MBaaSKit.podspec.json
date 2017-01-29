@@ -1,0 +1,22 @@
+{
+  "name": "MBaaSKit",
+  "version": "0.1.0",
+  "summary": "A short description of MBaaSKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/collegboi/MBaaSKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "collegboi": "timothy.barnard@mydit.ie"
+  },
+  "source": {
+    "git": "https://github.com/collegboi/MBaaSKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "MBaaSKit/Classes/**/*"
+}

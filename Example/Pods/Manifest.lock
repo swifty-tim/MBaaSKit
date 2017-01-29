@@ -1,0 +1,16 @@
+PODS:
+  - MBaaSKit (0.1.0)
+
+DEPENDENCIES:
+  - MBaaSKit (from `../`)
+
+EXTERNAL SOURCES:
+  MBaaSKit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  MBaaSKit: dedd3ec55004ffaa83e814e2d31dfa5e88c960cb
+
+PODFILE CHECKSUM: 00155fe014cc68bb7a609762b20c92d3830c0f02
+
+COCOAPODS: 1.2.0
