@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MBaaSKit_Example' do
+  pod 'MBaaSKit', :path => '../'
+
+  target 'MBaaSKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
