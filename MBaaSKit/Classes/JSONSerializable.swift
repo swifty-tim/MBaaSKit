@@ -183,8 +183,8 @@ extension JSONSerializable {
     
     /**
      - parameters:
-     - objectID: id of the object past in
-     - postCompleted: return value of success state
+        - objectID: id of the object past in
+        - postCompleted: return value of success state
      
      */
     
@@ -241,9 +241,9 @@ extension Array where Element: JSONSerializable {
     
     /**
      - parameters:
-     - type: struct name
-     - getCompleted: return value of success state
-     - data: return array of objects
+        - type: struct name
+        - getCompleted: return value of success state
+        - data: return array of objects
      
      */
     

@@ -11,6 +11,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+* Swift 3
+
 ## Installation
 
 MBaaSKit is available through [CocoaPods](http://cocoapods.org). To install
@@ -19,6 +21,58 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "MBaaSKit"
 ```
+
+## Usage
+
+```swift
+
+struct TestObject: JSONSerializable {
+
+    var name: String!
+
+    init() {
+    }
+
+    init(name:String) {
+        self.name = name
+    }
+
+
+    init( dict: [String:Any] ) {
+        self.name = dict["name"] as! String
+
+    }
+}
+
+
+var result = [TestObject]()
+result.getAllInBackground(ofType:TestObject.self) { (succeeded: Bool, data: [TestObject]) -> () in
+
+    DispatchQueue.main.async {
+        if (succeeded) {
+            result = data
+            print("success")
+        } else {
+            print("error")
+        }
+    }
+}
+
+let testObject = TestObject(name: "timothy")
+
+testObject.sendInBackground("objectID"){ (succeeded: Bool, data: NSData) -> () in
+
+    DispatchQueue.main.async {
+        if (succeeded) {
+            print("scucess")
+        } else {
+            print("error")
+        }
+    }
+}
+
+```
+
 
 ## Author
 
