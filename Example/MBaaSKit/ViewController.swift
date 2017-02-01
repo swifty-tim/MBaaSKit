@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBaaSKit
 
 class ViewController: UIViewController {
 
@@ -19,6 +20,40 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+//    func testGetServer() {
+//        
+//        var result = [TestObject]()
+//        result.getAllInBackground(ofType:TestObject.self) { (succeeded: Bool, data: [TestObject]) -> () in
+//            
+//            DispatchQueue.main.async {
+//                if (succeeded) {
+//                    result = data
+//                    print("scucess")
+//                } else {
+//                    print("error")
+//                }
+//            }
+//        }
+//    }
+//    
+//    func testSever() {
+//        
+//        let testObject = TestObject(name: "timothy")
+//        
+//        testObject.sendInBackground(""){ (succeeded: Bool, data: NSData) -> () in
+//            // Move to the UI thread
+//            
+//            DispatchQueue.main.async {
+//                if (succeeded) {
+//                    print("scucess")
+//                } else {
+//                    print("error")
+//                }
+//            }
+//        }
+//        
+//    }
 
 }
 

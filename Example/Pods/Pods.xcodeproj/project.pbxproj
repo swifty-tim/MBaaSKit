@@ -14,9 +14,23 @@
 		7DC2425971DAC3D147B647B196D78422 /* Pods-MBaaSKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286E82DB8319B4B39702877FB3D459C /* Pods-MBaaSKit_Tests-dummy.m */; };
 		83C1E3B598123E472913DC8EA8023620 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		9C5E4BC7E70EAA7FC0097CA078EE10FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		B2088F591E42468600458F58 /* MyExceptionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F581E42468600458F58 /* MyExceptionHandler.swift */; };
 		B2D4F2911E3E76EE00106A97 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2901E3E76EE00106A97 /* JSONSerializable.swift */; };
 		B2D4F2931E3E771000106A97 /* KeyValuePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2921E3E771000106A97 /* KeyValuePair.swift */; };
 		B2D4F2951E3E772600106A97 /* Dictionary+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2941E3E772600106A97 /* Dictionary+Ext.swift */; };
+		B2D4F2AD1E3E975600106A97 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2A31E3E975500106A97 /* Button.swift */; };
+		B2D4F2AE1E3E975600106A97 /* ButtonLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2A41E3E975500106A97 /* ButtonLoad.swift */; };
+		B2D4F2AF1E3E975600106A97 /* ImageLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2A51E3E975500106A97 /* ImageLoad.swift */; };
+		B2D4F2B01E3E975600106A97 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2A61E3E975500106A97 /* ImageView.swift */; };
+		B2D4F2B11E3E975600106A97 /* LabelLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2A71E3E975600106A97 /* LabelLoad.swift */; };
+		B2D4F2B21E3E975600106A97 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2A81E3E975600106A97 /* LabelView.swift */; };
+		B2D4F2B31E3E975600106A97 /* RCTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2A91E3E975600106A97 /* RCTableView.swift */; };
+		B2D4F2B41E3E975600106A97 /* TableLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2AA1E3E975600106A97 /* TableLoad.swift */; };
+		B2D4F2B51E3E975600106A97 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2AB1E3E975600106A97 /* TextField.swift */; };
+		B2D4F2B61E3E975600106A97 /* TextLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2AC1E3E975600106A97 /* TextLoad.swift */; };
+		B2D4F2BB1E3E97B400106A97 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2B81E3E97B400106A97 /* FileManager.swift */; };
+		B2D4F2BC1E3E97B400106A97 /* PrintLn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2B91E3E97B400106A97 /* PrintLn.swift */; };
+		B2D4F2BD1E3E97B400106A97 /* RCConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2BA1E3E97B400106A97 /* RCConfigManager.swift */; };
 		B718AA140C585DE61379A868C3EE5769 /* Pods-MBaaSKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 255B978BD02C66EFCFD391B61A02D8D3 /* Pods-MBaaSKit_Example-dummy.m */; };
 		BFAAA1B70586430E09D5FF107F7A2F64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -54,9 +68,23 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		95C3D11AE297D8505E2BF797C39EC77A /* Pods-MBaaSKit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MBaaSKit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A409694A57566F0AFB2EC9746C878774 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2088F581E42468600458F58 /* MyExceptionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyExceptionHandler.swift; sourceTree = "<group>"; };
 		B2D4F2901E3E76EE00106A97 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		B2D4F2921E3E771000106A97 /* KeyValuePair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValuePair.swift; sourceTree = "<group>"; };
 		B2D4F2941E3E772600106A97 /* Dictionary+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Ext.swift"; sourceTree = "<group>"; };
+		B2D4F2A31E3E975500106A97 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Applications/Button.swift"; sourceTree = "<group>"; };
+		B2D4F2A41E3E975500106A97 /* ButtonLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonLoad.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Applications/ButtonLoad.swift"; sourceTree = "<group>"; };
+		B2D4F2A51E3E975500106A97 /* ImageLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageLoad.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Applications/ImageLoad.swift"; sourceTree = "<group>"; };
+		B2D4F2A61E3E975500106A97 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageView.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Applications/ImageView.swift"; sourceTree = "<group>"; };
+		B2D4F2A71E3E975600106A97 /* LabelLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelLoad.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Applications/LabelLoad.swift"; sourceTree = "<group>"; };
+		B2D4F2A81E3E975600106A97 /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelView.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Applications/LabelView.swift"; sourceTree = "<group>"; };
+		B2D4F2A91E3E975600106A97 /* RCTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RCTableView.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Applications/RCTableView.swift"; sourceTree = "<group>"; };
+		B2D4F2AA1E3E975600106A97 /* TableLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableLoad.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Applications/TableLoad.swift"; sourceTree = "<group>"; };
+		B2D4F2AB1E3E975600106A97 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Applications/TextField.swift"; sourceTree = "<group>"; };
+		B2D4F2AC1E3E975600106A97 /* TextLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextLoad.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Applications/TextLoad.swift"; sourceTree = "<group>"; };
+		B2D4F2B81E3E97B400106A97 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileManager.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Controller/FileManager.swift"; sourceTree = "<group>"; };
+		B2D4F2B91E3E97B400106A97 /* PrintLn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrintLn.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Controller/PrintLn.swift"; sourceTree = "<group>"; };
+		B2D4F2BA1E3E97B400106A97 /* RCConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RCConfigManager.swift; path = "../../../Projects/DIT-Timetable/DIT-Timetable-iOS/DIT-Timetable-V2/Controller/RCConfigManager.swift"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CF904D0C5E001A3D4F8149A66971487D /* Pods-MBaaSKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MBaaSKit_Example.modulemap"; sourceTree = "<group>"; };
 		DA5B0CA8DB7313186B75F279884BA871 /* Pods-MBaaSKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MBaaSKit_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,9 +202,47 @@
 			path = "Example/Pods/Target Support Files/MBaaSKit";
 			sourceTree = "<group>";
 		};
+		B2088F571E42464200458F58 /* ExceptionHandling */ = {
+			isa = PBXGroup;
+			children = (
+				B2088F581E42468600458F58 /* MyExceptionHandler.swift */,
+			);
+			name = ExceptionHandling;
+			sourceTree = "<group>";
+		};
+		B2D4F2A21E3E970300106A97 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B2D4F2A31E3E975500106A97 /* Button.swift */,
+				B2D4F2A41E3E975500106A97 /* ButtonLoad.swift */,
+				B2D4F2A51E3E975500106A97 /* ImageLoad.swift */,
+				B2D4F2A61E3E975500106A97 /* ImageView.swift */,
+				B2D4F2A71E3E975600106A97 /* LabelLoad.swift */,
+				B2D4F2A81E3E975600106A97 /* LabelView.swift */,
+				B2D4F2A91E3E975600106A97 /* RCTableView.swift */,
+				B2D4F2AA1E3E975600106A97 /* TableLoad.swift */,
+				B2D4F2AB1E3E975600106A97 /* TextField.swift */,
+				B2D4F2AC1E3E975600106A97 /* TextLoad.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		B2D4F2B71E3E978400106A97 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B2D4F2B81E3E97B400106A97 /* FileManager.swift */,
+				B2D4F2B91E3E97B400106A97 /* PrintLn.swift */,
+				B2D4F2BA1E3E97B400106A97 /* RCConfigManager.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		BA853CA1C45A1B24945275DD03F80806 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B2088F571E42464200458F58 /* ExceptionHandling */,
+				B2D4F2B71E3E978400106A97 /* Controller */,
+				B2D4F2A21E3E970300106A97 /* Protocols */,
 				B2D4F2901E3E76EE00106A97 /* JSONSerializable.swift */,
 				B2D4F2921E3E771000106A97 /* KeyValuePair.swift */,
 				B2D4F2941E3E772600106A97 /* Dictionary+Ext.swift */,
@@ -354,10 +420,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2D4F2BD1E3E97B400106A97 /* RCConfigManager.swift in Sources */,
+				B2D4F2BB1E3E97B400106A97 /* FileManager.swift in Sources */,
+				B2D4F2B01E3E975600106A97 /* ImageView.swift in Sources */,
+				B2D4F2B11E3E975600106A97 /* LabelLoad.swift in Sources */,
+				B2088F591E42468600458F58 /* MyExceptionHandler.swift in Sources */,
+				B2D4F2AD1E3E975600106A97 /* Button.swift in Sources */,
+				B2D4F2AE1E3E975600106A97 /* ButtonLoad.swift in Sources */,
+				B2D4F2B31E3E975600106A97 /* RCTableView.swift in Sources */,
+				B2D4F2B51E3E975600106A97 /* TextField.swift in Sources */,
 				B2D4F2911E3E76EE00106A97 /* JSONSerializable.swift in Sources */,
+				B2D4F2B41E3E975600106A97 /* TableLoad.swift in Sources */,
 				B2D4F2951E3E772600106A97 /* Dictionary+Ext.swift in Sources */,
 				6C97A8508F71471AE6AB02981B29D5D2 /* MBaaSKit-dummy.m in Sources */,
 				B2D4F2931E3E771000106A97 /* KeyValuePair.swift in Sources */,
+				B2D4F2AF1E3E975600106A97 /* ImageLoad.swift in Sources */,
+				B2D4F2B61E3E975600106A97 /* TextLoad.swift in Sources */,
+				B2D4F2B21E3E975600106A97 /* LabelView.swift in Sources */,
+				B2D4F2BC1E3E97B400106A97 /* PrintLn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

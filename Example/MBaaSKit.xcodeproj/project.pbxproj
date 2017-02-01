@@ -15,6 +15,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		B2D4F2971E3E91C600106A97 /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2961E3E91C600106A97 /* TestObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		649F9FAC42C5FCAD607924AE /* Pods_MBaaSKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MBaaSKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		766BCA51597C8344E0F6C920 /* Pods-MBaaSKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBaaSKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MBaaSKit_Tests/Pods-MBaaSKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8867855839A262B8F99E2660 /* Pods-MBaaSKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBaaSKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MBaaSKit_Example/Pods-MBaaSKit_Example.release.xcconfig"; sourceTree = "<group>"; };
+		B2D4F2961E3E91C600106A97 /* TestObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
 		C67A17ED39DCFB7DF5C3A207 /* MBaaSKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MBaaSKit.podspec; path = ../MBaaSKit.podspec; sourceTree = "<group>"; };
 		D2A344FAF6BBD8A95107B39A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E48DA6A49AAB2ACFCABE8204 /* Pods-MBaaSKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBaaSKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MBaaSKit_Tests/Pods-MBaaSKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				B2D4F2961E3E91C600106A97 /* TestObject.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -361,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2D4F2971E3E91C600106A97 /* TestObject.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

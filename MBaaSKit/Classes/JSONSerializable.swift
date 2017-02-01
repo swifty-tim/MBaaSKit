@@ -181,6 +181,20 @@ extension JSONSerializable {
         return returnObject
     }
     
+    private func getURL() -> String {
+        
+        var returnStr = ""
+        
+        if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            
+            if let url = dict["URL"] as? String {
+                returnStr = url
+            }
+        }
+        
+        return returnStr
+    }
+    
     /**
      - parameters:
         - objectID: id of the object past in
@@ -202,7 +216,7 @@ extension JSONSerializable {
                 newData["_id"] = objectID as AnyObject?
             }
             
-            let apiEndpoint = "http://0.0.0.0:8181/storage/"
+            let apiEndpoint = self.getURL()+"/storage/"
             let networkURL = apiEndpoint + className
             
             let dic = newData
@@ -251,7 +265,7 @@ extension Array where Element: JSONSerializable {
         
         let className = ("\(type(of: T()))")
         
-        let apiEndpoint = "http://0.0.0.0:8181/storage/"
+        let apiEndpoint = self.getURL()+"/storage/"
         let networkURL = apiEndpoint + className
         
         guard let endpoint = URL(string: networkURL) else {
@@ -294,7 +308,20 @@ extension Array where Element: JSONSerializable {
             getCompleted(true, allT)
             
             }.resume()
+    }
+    
+    private func getURL() -> String {
         
+        var returnStr = "http://127.0.0.1:8181"
+        
+        if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            
+            if let url = dict["URL"] as? String {
+                returnStr = url
+            }
+        }
+        
+        return returnStr
     }
 }
 

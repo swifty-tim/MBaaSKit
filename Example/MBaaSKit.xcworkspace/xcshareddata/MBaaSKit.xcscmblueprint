@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "28D2E65E83770199FC7B9EAA21F0A8C7D18A4C05",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "86E02B41AC860C341336A70825AEC4018F7B6ACD" : 9223372036854775807,
+    "28D2E65E83770199FC7B9EAA21F0A8C7D18A4C05" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4ADAE8D2-5D42-4452-85EA-76A4DEF00266",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "86E02B41AC860C341336A70825AEC4018F7B6ACD" : "Projects\/DIT-Timetable\/DIT-Timetable-iOS\/",
+    "28D2E65E83770199FC7B9EAA21F0A8C7D18A4C05" : "MBaaSKit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MBaaSKit",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Example\/MBaaSKit.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/collegboi\/MBaaSKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "28D2E65E83770199FC7B9EAA21F0A8C7D18A4C05"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/collegboi\/DIT-Timetable-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "86E02B41AC860C341336A70825AEC4018F7B6ACD"
+    }
+  ]
+}
