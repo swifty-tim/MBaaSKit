@@ -1,12 +1,14 @@
 //
-//  JSONSerializable.swift
-//  Pods
+//  JSONRepresentable.swift
+//  CMS Remote Config
 //
-//  Created by Timothy Barnard on 29/01/2017.
-//
+//  Created by Timothy Barnard on 30/10/2016.
+//  Copyright © 2016 Timothy Barnard. All rights reserved.
 //
 
+
 import Foundation
+
 
 protocol JSONRepresentable {
     var JSONRepresentation: AnyObject { get }
@@ -15,6 +17,8 @@ protocol JSONRepresentable {
 protocol JSONSerializable: JSONRepresentable {
     init()
     init(dict:[String:Any])
+    init(dict: [String])
+    init(dict: String)
 }
 
 //: ### Implementing the functionality through protocol extensions
@@ -181,26 +185,281 @@ extension JSONSerializable {
         return returnObject
     }
     
-    private func getURL() -> String {
+    /**
+     - parameters:
+     - objectID: id of the object past in
+     - postCompleted: return value of success state
+     
+     */
+    
+    func getInBackground<T:JSONSerializable>(_ objectID: String, ofType type:T.Type , getCompleted : @escaping (_ succeeded: Bool, _ data: T) -> ()) {
         
-        var returnStr = ""
+        let className = ("\(type(of: self))")
         
-        if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
-            
-            if let url = dict["URL"] as? String {
-                returnStr = url
-            }
+        if objectID == "" {
+            getCompleted(false, T())
         }
         
-        return returnStr
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        
+        let apiEndpoint = "/storage/"
+        let networkURL = url + apiEndpoint + className + "/"+objectID
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            getCompleted(false, T())
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "GET"
+        
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                getCompleted(false, T())
+            }
+            
+            guard let data = data else {
+                getCompleted(false, T())
+                return
+            }
+            
+            do {
+                
+                let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                let allObjects = dataObjects["data"] as? NSArray
+                guard let object = allObjects?.firstObject else {
+                    getCompleted(false, T())
+                    return
+                }
+                
+                getCompleted(true, T(dict: object as! [String:Any]))
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            }.resume()
     }
     
     /**
      - parameters:
-        - objectID: id of the object past in
-        - postCompleted: return value of success state
-     
+     - type: struct name
+     - getCompleted: return value of success state
+     - data: return array of objects
      */
+    
+    func getGenericAllInBackground(tableName: String, getCompleted : @escaping (_ succeeded: Bool, _ data: GenericTable? ) -> ()) {
+        
+        //let className = ("\(type(of: T()))")
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let apiEndpoint = "/storage/"
+        let networkURL = url + apiEndpoint + tableName
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "GET"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        var genericTable : GenericTable?
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                getCompleted(false, genericTable)
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                
+                let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                var records = [Document]()
+                
+                let allObjects = dataObjects["data"] as? NSArray
+                
+                for object in allObjects! {
+                    
+                    var parentChildren = [Document]()
+                    
+                    if let parentObjects = object as? [String:Any] {
+                        
+                        for parentObject in parentObjects {
+                            
+                            let key = parentObject.key
+                            let value = parentObject.value as AnyObject
+                            
+                            let childrenRecords = self.recursiveFindChildren(object: value)
+                            
+                            let parentDoc = Document(key: key, value: value, children: childrenRecords, hasChildren: childrenRecords.count)
+                            
+                            parentChildren.append(parentDoc)
+                        }
+                    }
+                    
+                    let parentDoc = Document(key: "", value: "" as AnyObject, children: parentChildren, hasChildren: parentChildren.count)
+                    
+                    records.append(parentDoc)
+                }
+                
+                genericTable = GenericTable(dict: records )
+                
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            getCompleted(true, genericTable)
+            
+            }.resume()
+    }
+    
+    internal func recursiveFindChildren( object: AnyObject ) -> [Document] {
+        
+        var children = [Document]()
+        
+        func tryFindChildren( object: AnyObject ) {
+            
+            if let parentObjects = object as? [String:Any] {
+                
+                for childObject in parentObjects {
+                    
+                    let key = childObject.key
+                    let value = childObject.value as AnyObject
+                    
+                    let childDoc = Document(key: key, value: value, children: [], hasChildren: 0)
+                    children.append(childDoc)
+                    
+                    if self.recursiveChildren( value ) {
+                        tryFindChildren(object: value )
+                    }
+                }
+            }
+        }
+        
+        tryFindChildren(object: object)
+        
+        
+        return children
+        
+    }
+    
+    internal func recursiveChildren(_ object: AnyObject  ) -> Bool {
+        
+        if object is [String:AnyObject] || object is [AnyObject] {
+            return true
+        }
+        return false
+        
+    }
+    
+    func genericRemoveInBackground(_ objectID: String, collectioName: String, deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let apiEndpoint = "/storage/"
+        let networkURL = url + apiEndpoint + collectioName + "/" + objectID
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "DELETE"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                deleteCompleted(false, "Not removed")
+            }
+            
+            guard let _ = data else {
+                return
+            }
+            
+            do {
+                
+                //let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            deleteCompleted(true, "Removed")
+            
+            }.resume()
+        
+    }
+    
+    
+    
+    func removeInBackground(_ objectID: String, deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+        
+        let className = ("\(type(of: self))")
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let apiEndpoint = "/storage/"
+        let networkURL = url + apiEndpoint + className + "/" + objectID
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "DELETE"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                deleteCompleted(false, "Not removed")
+            }
+            
+            guard let _ = data else {
+                return
+            }
+            
+            do {
+                
+                //let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            deleteCompleted(true, "Removed")
+            
+            }.resume()
+    }
+    
     
     func sendInBackground(_ objectID: String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
@@ -216,8 +475,11 @@ extension JSONSerializable {
                 newData["_id"] = objectID as AnyObject?
             }
             
-            let apiEndpoint = self.getURL()+"/storage/"
-            let networkURL = apiEndpoint + className
+            var url: String = ""
+            url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+            
+            let apiEndpoint = "/storage/"
+            let networkURL = url + apiEndpoint + className
             
             let dic = newData
             
@@ -255,9 +517,9 @@ extension Array where Element: JSONSerializable {
     
     /**
      - parameters:
-        - type: struct name
-        - getCompleted: return value of success state
-        - data: return array of objects
+     - type: struct name
+     - getCompleted: return value of success state
+     - data: return array of objects
      
      */
     
@@ -265,8 +527,10 @@ extension Array where Element: JSONSerializable {
         
         let className = ("\(type(of: T()))")
         
-        let apiEndpoint = self.getURL()+"/storage/"
-        let networkURL = apiEndpoint + className
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let apiEndpoint = "/storage/"
+        let networkURL = url + apiEndpoint + className
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")
@@ -298,7 +562,15 @@ extension Array where Element: JSONSerializable {
                 
                 for object in allObjects! {
                     
-                    allT.append(T(dict: object as! [String:Any]))
+                    if let newObject = object as? [String:Any] {
+                        allT.append(T(dict: newObject ))
+                    }
+                    else if let newStringArr = object as? [String] {
+                        allT.append(T(dict: newStringArr))
+                    }
+                    else if let newString = object as? String {
+                        allT.append(T(dict: newString))
+                    }
                 }
                 
             } catch let error as NSError {
@@ -308,20 +580,7 @@ extension Array where Element: JSONSerializable {
             getCompleted(true, allT)
             
             }.resume()
-    }
-    
-    private func getURL() -> String {
         
-        var returnStr = "http://127.0.0.1:8181"
-        
-        if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
-            
-            if let url = dict["URL"] as? String {
-                returnStr = url
-            }
-        }
-        
-        return returnStr
     }
 }
 

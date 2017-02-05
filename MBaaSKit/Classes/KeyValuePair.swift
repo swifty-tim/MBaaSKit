@@ -18,3 +18,40 @@ class KeyValuePair {
         self.value = value
     }
 }
+
+struct Document: JSONSerializable {
+    
+    var hasChildren: Int = 0
+    var key: String?
+    var value : AnyObject?
+    var children: [Document]?
+    
+    init() {}
+    init(dict: [String : Any]) {}
+    
+    init(dict: [String]) {}
+    init(dict: String) {}
+    
+    init( key: String, value: AnyObject, children: [Document] = [], hasChildren: Int = 0 ) {
+        self.key = key
+        self.value = value
+        self.children = children
+        self.hasChildren = hasChildren
+    }
+}
+
+struct GenericTable: JSONSerializable {
+    
+    var row: [Document]!
+    
+    init() {}
+    init(dict: [String : Any]) {}
+    
+    init(dict: [String]) {}
+    init(dict: String) {}
+    
+    init(dict: [Document]) {
+        self.row = dict
+    }
+    
+}
