@@ -18,6 +18,7 @@
 		B22538621E4755CD00DC0380 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22538611E4755CD00DC0380 /* String+Ext.swift */; };
 		B22538641E47564F00DC0380 /* Float+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22538631E47564F00DC0380 /* Float+Ext.swift */; };
 		B22538661E47567100DC0380 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22538651E47567100DC0380 /* View+Ext.swift */; };
+		B253B22C1E4933E700E86B9B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B22B1E4933E700E86B9B /* Notification.swift */; };
 		B2D4F2911E3E76EE00106A97 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2901E3E76EE00106A97 /* JSONSerializable.swift */; };
 		B2D4F2931E3E771000106A97 /* KeyValuePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2921E3E771000106A97 /* KeyValuePair.swift */; };
 		B2D4F2951E3E772600106A97 /* Dictionary+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2941E3E772600106A97 /* Dictionary+Ext.swift */; };
@@ -75,6 +76,7 @@
 		B22538611E4755CD00DC0380 /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		B22538631E47564F00DC0380 /* Float+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Float+Ext.swift"; sourceTree = "<group>"; };
 		B22538651E47567100DC0380 /* View+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		B253B22B1E4933E700E86B9B /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		B2D4F2901E3E76EE00106A97 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		B2D4F2921E3E771000106A97 /* KeyValuePair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValuePair.swift; sourceTree = "<group>"; };
 		B2D4F2941E3E772600106A97 /* Dictionary+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Ext.swift"; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				B2D4F2B81E3E97B400106A97 /* FileManager.swift */,
 				B2D4F2B91E3E97B400106A97 /* PrintLn.swift */,
 				B2D4F2BA1E3E97B400106A97 /* RCConfigManager.swift */,
+				B253B22B1E4933E700E86B9B /* Notification.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				B2D4F2AD1E3E975600106A97 /* Button.swift in Sources */,
 				B2D4F2AE1E3E975600106A97 /* ButtonLoad.swift in Sources */,
 				B2D4F2B31E3E975600106A97 /* RCTableView.swift in Sources */,
+				B253B22C1E4933E700E86B9B /* Notification.swift in Sources */,
 				B2D4F2B51E3E975600106A97 /* TextField.swift in Sources */,
 				B2D4F2911E3E76EE00106A97 /* JSONSerializable.swift in Sources */,
 				B2D4F2B41E3E975600106A97 /* TableLoad.swift in Sources */,
