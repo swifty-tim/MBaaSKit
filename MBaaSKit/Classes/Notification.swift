@@ -13,6 +13,10 @@ class TBNotification {
     private var deviceID: String = ""
     private var message: String = ""
     private var userID: String = ""
+    private var badgeNo: String = ""
+    private var contentAvailable: String = ""
+    private var title:String = ""
+    private var status:String = "0"
     
     init(){}
     
@@ -25,7 +29,20 @@ class TBNotification {
     func setUserID(_ userID:String) {
         self.userID = userID
     }
-    
+    func setTitle(_ title:String) {
+        self.title = title
+    }
+    func setBadgeNo(_ no: Int) {
+        self.badgeNo = "\(no)"
+    }
+    func setContentAvailable(_ set: Bool) {
+        switch set {
+        case true:
+            self.contentAvailable = "1"
+        default:
+            self.contentAvailable = "0"
+        }
+    }
     
     /**
      - parameters:
@@ -53,7 +70,12 @@ class TBNotification {
         
         let dict : [String:AnyObject] = [
             "deviceId":self.deviceID as AnyObject,
-            "message":self.message as AnyObject
+            "message":self.message as AnyObject,
+            "userID":self.userID as AnyObject,
+            "badgeNo":self.badgeNo as AnyObject,
+            "contentAvailable":self.contentAvailable as AnyObject,
+            "title":self.title as AnyObject,
+            "status":self.status as AnyObject
         ]
         
         do {
