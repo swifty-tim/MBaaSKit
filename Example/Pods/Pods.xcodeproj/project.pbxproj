@@ -20,6 +20,8 @@
 		B22538661E47567100DC0380 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22538651E47567100DC0380 /* View+Ext.swift */; };
 		B253B22C1E4933E700E86B9B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B22B1E4933E700E86B9B /* Notification.swift */; };
 		B253B2441E4A9BEE00E86B9B /* TBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B2431E4A9BEE00E86B9B /* TBAnalytics.swift */; };
+		B253B25A1E4B7A0C00E86B9B /* HTTPSRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B2591E4B7A0C00E86B9B /* HTTPSRequest.swift */; };
+		B253B25C1E4B7A2D00E86B9B /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B25B1E4B7A2D00E86B9B /* Data+Ext.swift */; };
 		B2D4F2911E3E76EE00106A97 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2901E3E76EE00106A97 /* JSONSerializable.swift */; };
 		B2D4F2931E3E771000106A97 /* KeyValuePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2921E3E771000106A97 /* KeyValuePair.swift */; };
 		B2D4F2951E3E772600106A97 /* Dictionary+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2941E3E772600106A97 /* Dictionary+Ext.swift */; };
@@ -79,6 +81,8 @@
 		B22538651E47567100DC0380 /* View+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		B253B22B1E4933E700E86B9B /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		B253B2431E4A9BEE00E86B9B /* TBAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBAnalytics.swift; sourceTree = "<group>"; };
+		B253B2591E4B7A0C00E86B9B /* HTTPSRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPSRequest.swift; sourceTree = "<group>"; };
+		B253B25B1E4B7A2D00E86B9B /* Data+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
 		B2D4F2901E3E76EE00106A97 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		B2D4F2921E3E771000106A97 /* KeyValuePair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValuePair.swift; sourceTree = "<group>"; };
 		B2D4F2941E3E772600106A97 /* Dictionary+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Ext.swift"; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 				B22538611E4755CD00DC0380 /* String+Ext.swift */,
 				B22538631E47564F00DC0380 /* Float+Ext.swift */,
 				B22538651E47567100DC0380 /* View+Ext.swift */,
+				B253B25B1E4B7A2D00E86B9B /* Data+Ext.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 				B2D4F2BA1E3E97B400106A97 /* RCConfigManager.swift */,
 				B253B22B1E4933E700E86B9B /* Notification.swift */,
 				B253B2431E4A9BEE00E86B9B /* TBAnalytics.swift */,
+				B253B2591E4B7A0C00E86B9B /* HTTPSRequest.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -452,12 +458,14 @@
 				B2D4F2AE1E3E975600106A97 /* ButtonLoad.swift in Sources */,
 				B2D4F2B31E3E975600106A97 /* RCTableView.swift in Sources */,
 				B253B22C1E4933E700E86B9B /* Notification.swift in Sources */,
+				B253B25A1E4B7A0C00E86B9B /* HTTPSRequest.swift in Sources */,
 				B253B2441E4A9BEE00E86B9B /* TBAnalytics.swift in Sources */,
 				B2D4F2B51E3E975600106A97 /* TextField.swift in Sources */,
 				B2D4F2911E3E76EE00106A97 /* JSONSerializable.swift in Sources */,
 				B2D4F2B41E3E975600106A97 /* TableLoad.swift in Sources */,
 				B2D4F2951E3E772600106A97 /* Dictionary+Ext.swift in Sources */,
 				6C97A8508F71471AE6AB02981B29D5D2 /* MBaaSKit-dummy.m in Sources */,
+				B253B25C1E4B7A2D00E86B9B /* Data+Ext.swift in Sources */,
 				B22538621E4755CD00DC0380 /* String+Ext.swift in Sources */,
 				B22538661E47567100DC0380 /* View+Ext.swift in Sources */,
 				B2D4F2931E3E771000106A97 /* KeyValuePair.swift in Sources */,
