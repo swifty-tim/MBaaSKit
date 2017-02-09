@@ -7,6 +7,12 @@
 //
 
 import Foundation
+#if os(iOS)
+    import UIKit
+    import MobileCoreServices
+#else
+    import CoreServices
+#endif
 
 class HTTPSRequest {
     
