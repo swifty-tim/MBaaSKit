@@ -59,6 +59,12 @@ extension Dictionary {
 
 extension Dictionary {
     
+    /// Try Convert string from dictionary
+    ///
+    /// - parameter key:        The key for which to return the value
+    /// - parameter defaultVal: If the key is not found then return default
+    ///
+    /// - returns:              The coverted string
     func tryConvert(forKey key:Key, _ defaultVal :String = "" ) -> String {
         
         guard let test = self[key] as? String else {
