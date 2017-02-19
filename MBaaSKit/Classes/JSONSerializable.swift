@@ -5,10 +5,65 @@
 //  Created by Timothy Barnard on 30/10/2016.
 //  Copyright © 2016 Timothy Barnard. All rights reserved.
 //
-
-
+//
+//  JSONRepresentable.swift
+//  CMS Remote Config
+//
+//  Created by Timothy Barnard on 30/10/2016.
+//  Copyright © 2016 Timothy Barnard. All rights reserved.
+//
 import Foundation
 
+class UniqueSting {
+    
+    static func myNewUUID() -> String {
+        let x = asMyUUID()
+        return x.string
+    }
+    struct asMyUUID {
+        let uuid: uuid_t
+        
+        public init() {
+            let u = UnsafeMutablePointer<UInt8>.allocate(capacity:  MemoryLayout<uuid_t>.size)
+            defer {
+                u.deallocate(capacity: MemoryLayout<uuid_t>.size)
+            }
+            uuid_generate_random(u)
+            self.uuid = asMyUUID.uuidFromPointer(u)
+        }
+        
+        public init(_ string: String) {
+            let u = UnsafeMutablePointer<UInt8>.allocate(capacity:  MemoryLayout<uuid_t>.size)
+            defer {
+                u.deallocate(capacity: MemoryLayout<uuid_t>.size)
+            }
+            uuid_parse(string, u)
+            self.uuid = asMyUUID.uuidFromPointer(u)
+        }
+        
+        init(_ uuid: uuid_t) {
+            self.uuid = uuid
+        }
+        
+        private static func uuidFromPointer(_ u: UnsafeMutablePointer<UInt8>) -> uuid_t {
+            // is there a better way?
+            return uuid_t(u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7], u[8], u[9], u[10], u[11], u[12], u[13], u[14], u[15])
+        }
+        
+        public var string: String {
+            let u = UnsafeMutablePointer<UInt8>.allocate(capacity:  MemoryLayout<uuid_t>.size)
+            let unu = UnsafeMutablePointer<Int8>.allocate(capacity:  37) // as per spec. 36 + null
+            defer {
+                u.deallocate(capacity: MemoryLayout<uuid_t>.size)
+                unu.deallocate(capacity: 37)
+            }
+            var uu = self.uuid
+            memcpy(u, &uu, MemoryLayout<uuid_t>.size)
+            uuid_unparse_lower(u, unu)
+            return String(validatingUTF8: unu)!
+        }
+    }
+}
 
 protocol JSONRepresentable {
     var JSONRepresentation: AnyObject { get }
@@ -20,6 +75,16 @@ protocol JSONSerializable: JSONRepresentable {
     init(dict: [String])
     init(dict: String)
 }
+
+extension JSONSerializable {
+    //    var databaseName: String {
+    //        get {
+    //            return self.databaseName
+    //        }
+    //        set(newVal) { self.databaseName = newVal }
+    //    }
+}
+
 
 //: ### Implementing the functionality through protocol extensions
 extension JSONSerializable {
@@ -93,6 +158,16 @@ extension JSONSerializable {
 }
 
 extension JSONSerializable {
+    
+    func toData() -> [ String: AnyObject ]  {
+        
+        if let jsonObj = self.toJSON() {
+            
+            return self.convertStringToDictionary(text: jsonObj)!
+        }
+        return [:]
+    }
+    
     func toJSON() -> String? {
         let representation = JSONRepresentation
         
@@ -192,7 +267,7 @@ extension JSONSerializable {
      
      */
     
-    func getInBackground<T:JSONSerializable>(_ objectID: String, ofType type:T.Type , getCompleted : @escaping (_ succeeded: Bool, _ data: T) -> ()) {
+    func getInBackground<T:JSONSerializable>(_ objectID: String, ofType type:T.Type , appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: T) -> ()) {
         
         let className = ("\(type(of: self))")
         
@@ -203,7 +278,17 @@ extension JSONSerializable {
         var url: String = ""
         url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
         
-        let apiEndpoint = "/storage/"
+        var key: String = ""
+        
+        if appKey != "" {
+            key = appKey
+        } else {
+            key = key.readPlistString(value: "APPKEY", "")
+        }
+        
+        let apiEndpoint = "/api/"+key+"/storage/"
+
+        
         let networkURL = url + apiEndpoint + className + "/"+objectID
         
         guard let endpoint = URL(string: networkURL) else {
@@ -255,13 +340,24 @@ extension JSONSerializable {
      - data: return array of objects
      */
     
-    func getGenericAllInBackground(tableName: String, getCompleted : @escaping (_ succeeded: Bool, _ data: GenericTable? ) -> ()) {
+    func getGenericAllInBackground(tableName: String, appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: GenericTable? ) -> ()) {
         
         //let className = ("\(type(of: T()))")
         
         var url: String = ""
         url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
-        let apiEndpoint = "/storage/"
+        
+        var key: String = ""
+        
+        if appKey != "" {
+            key = appKey
+        } else {
+            key = key.readPlistString(value: "APPKEY", "")
+        }
+        
+        let apiEndpoint = "/api/"+key+"/storage/"
+
+        
         let networkURL = url + apiEndpoint + tableName
         
         guard let endpoint = URL(string: networkURL) else {
@@ -366,14 +462,23 @@ extension JSONSerializable {
             return true
         }
         return false
-        
     }
     
-    func genericRemoveInBackground(_ objectID: String, collectioName: String, deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+    func genericRemoveInBackground(_ objectID: String, collectioName: String, appKey: String = "", deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
         var url: String = ""
         url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
-        let apiEndpoint = "/storage/"
+        
+        var key: String = ""
+        
+        if appKey != "" {
+            key = appKey
+        } else {
+            key = key.readPlistString(value: "APPKEY", "")
+        }
+        
+        let apiEndpoint = "/api/"+key+"/storage/"
+        
         let networkURL = url + apiEndpoint + collectioName + "/" + objectID
         
         guard let endpoint = URL(string: networkURL) else {
@@ -415,13 +520,25 @@ extension JSONSerializable {
     
     
     
-    func removeInBackground(_ objectID: String, deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+    func removeInBackground(_ objectID: String, appKey: String = "", deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
         let className = ("\(type(of: self))")
         
         var url: String = ""
         url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
-        let apiEndpoint = "/storage/"
+
+        
+        var key: String = ""
+        
+        if appKey != "" {
+            key = appKey
+        } else {
+            key = key.readPlistString(value: "APPKEY", "")
+        }
+        
+        let apiEndpoint = "/api/"+key+"/storage/"
+
+        
         let networkURL = url + apiEndpoint + className + "/" + objectID
         
         guard let endpoint = URL(string: networkURL) else {
@@ -458,10 +575,11 @@ extension JSONSerializable {
             deleteCompleted(true, "Removed")
             
             }.resume()
+        
     }
     
     
-    func sendInBackground(_ objectID: String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
+    func sendInBackground(_ objectID: String, appKey: String = "", postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
         let className = ("\(type(of: self))")
         
@@ -477,8 +595,19 @@ extension JSONSerializable {
             
             var url: String = ""
             url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+
             
-            let apiEndpoint = "/storage/"
+            var key: String = ""
+            
+            if appKey != "" {
+                key = appKey
+            } else {
+                key = key.readPlistString(value: "APPKEY", "")
+            }
+            
+            let apiEndpoint = "/api/"+key+"/storage/"
+
+            
             let networkURL = url + apiEndpoint + className
             
             let dic = newData
@@ -516,20 +645,125 @@ extension JSONSerializable {
 extension Array where Element: JSONSerializable {
     
     /**
+     getFilteredInBackground
      - parameters:
      - type: struct name
+     - query: Dictionary of objects to find : ("name":"Timothy")
      - getCompleted: return value of success state
      - data: return array of objects
      
      */
     
-    func getAllInBackground<T:JSONSerializable>(ofType type:T.Type, getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
+    func getFilteredInBackground<T:JSONSerializable>(ofType type:T.Type,  query: [String:AnyObject], appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
         
         let className = ("\(type(of: T()))")
         
         var url: String = ""
         url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
-        let apiEndpoint = "/storage/"
+
+        
+        var key: String = ""
+        
+        if appKey != "" {
+            key = appKey
+        } else {
+            key = key.readPlistString(value: "APPKEY", "")
+        }
+        
+        let apiEndpoint = "/api/"+key+"/storage/query/"
+
+        
+        let networkURL = url + apiEndpoint + className
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "POST"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: query, options: [])
+        } catch {
+            //err = error
+            request.httpBody = nil
+        }
+        
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        var allT = [T]()
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                getCompleted(false, allT)
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                
+                let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                let allObjects = dataObjects["data"] as? NSArray
+                
+                for object in allObjects! {
+                    
+                    if let newObject = object as? [String:Any] {
+                        allT.append(T(dict: newObject ))
+                    }
+                    else if let newStringArr = object as? [String] {
+                        allT.append(T(dict: newStringArr))
+                    }
+                    else if let newString = object as? String {
+                        allT.append(T(dict: newString))
+                    }
+                }
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            getCompleted(true, allT)
+            
+            }.resume()
+    }
+    
+    
+    
+    /**
+     getAllInBackground
+     - parameters:
+     - type: struct name
+     - getCompleted: return value of success state
+     - data: return array of objects
+     */
+    
+    func getAllInBackground<T:JSONSerializable>(ofType type:T.Type, appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
+        
+        let className = ("\(type(of: T()))")
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        
+        var key: String = ""
+        
+        if appKey != "" {
+            key = appKey
+        } else {
+            key = key.readPlistString(value: "APPKEY", "")
+        }
+        
+        let apiEndpoint = "/api/"+key+"/storage/"
+
         let networkURL = url + apiEndpoint + className
         
         guard let endpoint = URL(string: networkURL) else {
@@ -583,5 +817,3 @@ extension Array where Element: JSONSerializable {
         
     }
 }
-
-

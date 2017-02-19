@@ -235,10 +235,18 @@ public class MyException: NSObject {
     
     internal func sendExecptions( data: [String:AnyObject] ) {
         
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        
+        
+        var key: String = ""
+        key = key.readPlistString(value: "APPKEY", "")
+        
+        let apiEndpoint = "/api/"+key+"/storage/"
         
         let className = "Exceptions"
         
-        let apiEndpoint = "http://Timothys-MacBook-Pro.local:8181/storage/"
+        //let apiEndpoint = "http://Timothys-MacBook-Pro.local:8181/storage/"
         let networkURL = apiEndpoint + className
         
         let request = NSMutableURLRequest(url: NSURL(string: networkURL)! as URL)
