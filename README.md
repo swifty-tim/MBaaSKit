@@ -31,7 +31,7 @@ pod "MBaaSKit"
 
 ```swift
 
-struct TestObject: JSONSerializable {
+struct TestObject: TBJSONSerializable {
 
     var name: String!
 
