@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension UIImageView {
-    func downloadedFrom( actInd: UIActivityIndicatorView, url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+public extension UIImageView {
+    public func downloadedFrom( actInd: UIActivityIndicatorView, url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
         contentMode = mode
         actInd.startAnimating()
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -25,7 +25,7 @@ extension UIImageView {
             }
             }.resume()
     }
-    func downloadedFrom(  actInd: UIActivityIndicatorView, link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+    public func downloadedFrom(  actInd: UIActivityIndicatorView, link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
         guard let url = URL(string: link) else { return }
         downloadedFrom( actInd: actInd, url: url, contentMode: mode)
     }

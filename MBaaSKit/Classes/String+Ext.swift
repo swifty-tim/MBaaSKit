@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension String {
+public extension String {
     
-    func readPlistString( value: String, _ defaultStr: String = "") -> String {
+    public func readPlistString( value: String, _ defaultStr: String = "") -> String {
         var defaultURL = defaultStr
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
             
@@ -24,13 +24,13 @@ extension String {
     }
 }
 
-extension String {
+public extension String {
     
-    func contains(find: String) -> Bool{
+    public func contains(find: String) -> Bool{
         return self.range(of: find) != nil
     }
     
-    func containsIgnoringCase(find: String) -> Bool{
+    public func containsIgnoringCase(find: String) -> Bool{
         return self.range(of: find.lowercased()) != nil
     }
 }

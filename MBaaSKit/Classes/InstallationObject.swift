@@ -16,7 +16,7 @@ public struct TBInstallation: JSONSerializable {
     private var OSVersion:String!
     private var deviceModel:String!
     
-    init(deviceToken:Data) {
+    public init(deviceToken:Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         self.token = token
         self.getBuildValues()

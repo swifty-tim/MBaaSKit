@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension Dictionary {
+public extension Dictionary {
     
-    func getValueAtIndex( index: Int ) -> ( String, String ) {
+    public func getValueAtIndex( index: Int ) -> ( String, String ) {
         for( indexVal, value) in enumerated() {
             
             if indexVal == index {
@@ -21,7 +21,7 @@ extension Dictionary {
         return ("", "")
     }
     
-    func getKeyAtIndex( index: Int ) -> String {
+    public func getKeyAtIndex( index: Int ) -> String {
         for( indexVal, value) in enumerated() {
             
             if indexVal == index {
@@ -33,7 +33,7 @@ extension Dictionary {
     }
     
     
-    func getKeyValueAtIndex( index: Int ) -> KeyValuePair {
+    public func getKeyValueAtIndex( index: Int ) -> KeyValuePair {
         for( indexVal, value) in enumerated() {
             
             if indexVal == index {
@@ -45,7 +45,7 @@ extension Dictionary {
     }
     
     
-    func getObjectAtIndex( index: Int ) -> ( String, AnyObject ) {
+    public func getObjectAtIndex( index: Int ) -> ( String, AnyObject ) {
         
         for( indexVal, value) in enumerated() {
             
@@ -57,7 +57,7 @@ extension Dictionary {
     }
 }
 
-extension Dictionary {
+public extension Dictionary {
     
     /// Try Convert string from dictionary
     ///
@@ -65,7 +65,7 @@ extension Dictionary {
     /// - parameter defaultVal: If the key is not found then return default
     ///
     /// - returns:              The coverted string
-    func tryConvert(forKey key:Key, _ defaultVal :String = "" ) -> String {
+    public func tryConvert(forKey key:Key, _ defaultVal :String = "" ) -> String {
         
         guard let test = self[key] as? String else {
             return defaultVal
@@ -73,7 +73,7 @@ extension Dictionary {
         return test
     }
     
-    func tryConvert(forKey key:Key, _ defaultVal :Int = 0 ) -> Int {
+    public func tryConvert(forKey key:Key, _ defaultVal :Int = 0 ) -> Int {
         
         guard let test = self[key] as? Int else {
             return defaultVal
@@ -81,7 +81,7 @@ extension Dictionary {
         return test
     }
     
-    func tryConvert(forKey key:Key, _ defaultVal :Float = 0 ) -> Float {
+    public func tryConvert(forKey key:Key, _ defaultVal :Float = 0 ) -> Float {
         
         guard let test = self[key] as? Float else {
             return defaultVal
@@ -89,7 +89,7 @@ extension Dictionary {
         return test
     }
     
-    func tryConvert(forKey key:Key, _ defaultVal :CGFloat = 0 ) -> CGFloat {
+    public func tryConvert(forKey key:Key, _ defaultVal :CGFloat = 0 ) -> CGFloat {
         
         guard let test = self[key] as? CGFloat else {
             return defaultVal
@@ -98,7 +98,7 @@ extension Dictionary {
     }
     
     
-    func tryConvert(forKey key:Key, _ defaultVal :Bool = false ) -> Bool {
+    public func tryConvert(forKey key:Key, _ defaultVal :Bool = false ) -> Bool {
         
         guard let test = self[key] as? Int else {
             return defaultVal
@@ -106,7 +106,7 @@ extension Dictionary {
         return (test  == 1) ? true : false
     }
     
-    func tryConvert(forKey key:Key, _ defaultVal : Double = 0 ) -> Double {
+    public func tryConvert(forKey key:Key, _ defaultVal : Double = 0 ) -> Double {
         
         guard let test = self[key] as? Double else {
             return defaultVal
@@ -114,7 +114,7 @@ extension Dictionary {
         return test
     }
     
-    func tryConvert(forKey key:Key, _ defaultVal : [String] = [String]() ) -> [String] {
+    public func tryConvert(forKey key:Key, _ defaultVal : [String] = [String]() ) -> [String] {
         
         guard let test = self[key] as? [String] else {
             return defaultVal
@@ -122,7 +122,7 @@ extension Dictionary {
         return test
     }
     
-    func tryConvert(forKey key:Key, _ defaultVal : [Double] = [Double]() ) -> [Double] {
+    public func tryConvert(forKey key:Key, _ defaultVal : [Double] = [Double]() ) -> [Double] {
         
         guard let test = self[key] as? [Double] else {
             return defaultVal
@@ -130,7 +130,7 @@ extension Dictionary {
         return test
     }
     
-    func tryConvert(forKey key:Key, _ defaultVal : [Int] = [Int]() ) -> [Int] {
+    public func tryConvert(forKey key:Key, _ defaultVal : [Int] = [Int]() ) -> [Int] {
         
         guard let test = self[key] as? [Int] else {
             return defaultVal
@@ -138,7 +138,7 @@ extension Dictionary {
         return test
     }
     
-    func tryConvertObj(forKey key:Key, _ defaultVal : [String:AnyObject] = [String:AnyObject]() ) -> [String:AnyObject] {
+    public func tryConvertObj(forKey key:Key, _ defaultVal : [String:AnyObject] = [String:AnyObject]() ) -> [String:AnyObject] {
         
         guard let test = self[key] as? [String:AnyObject] else {
             return defaultVal

@@ -165,9 +165,9 @@ public extension JSONSerializable {
     }
 }
 
-extension JSONSerializable {
+public extension JSONSerializable {
     
-    func toData() -> [ String: AnyObject ]  {
+    public func toData() -> [ String: AnyObject ]  {
         
         if let jsonObj = self.toJSON() {
             
@@ -176,7 +176,7 @@ extension JSONSerializable {
         return [:]
     }
     
-    func toJSON() -> String? {
+    public func toJSON() -> String? {
         let representation = JSONRepresentation
         
         guard JSONSerialization.isValidJSONObject(representation) else {
@@ -191,7 +191,7 @@ extension JSONSerializable {
         }
     }
     
-    func objtToJSON( jsonObj : AnyObject ) -> String? {
+    public func objtToJSON( jsonObj : AnyObject ) -> String? {
         
         guard JSONSerialization.isValidJSONObject(jsonObj) else {
             return nil
@@ -205,7 +205,7 @@ extension JSONSerializable {
         }
     }
     
-    func toJSONObjects() -> [String : AnyObject]? {
+    public func toJSONObjects() -> [String : AnyObject]? {
         let representation = JSONRepresentation
         
         guard JSONSerialization.isValidJSONObject(representation) else {
@@ -215,7 +215,7 @@ extension JSONSerializable {
         return self.convertStringToDictionary(text: objtToJSON(jsonObj: representation)!)
     }
     
-    func convertStringToJSONObject(text: String) -> ( String, AnyObject ) {
+    public func convertStringToJSONObject(text: String) -> ( String, AnyObject ) {
         if let data = text.data(using: String.Encoding.utf8) {
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
@@ -229,7 +229,7 @@ extension JSONSerializable {
         return ("", "" as AnyObject)
     }
     
-    func convertStringToDictionary(text: String) -> [ String: AnyObject ]? {
+    public func convertStringToDictionary(text: String) -> [ String: AnyObject ]? {
         if let data = text.data(using: String.Encoding.utf8) {
             do {
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
@@ -241,7 +241,7 @@ extension JSONSerializable {
         return nil
     }
     
-    func convertToStr( name: Any ) -> AnyObject? {
+    public func convertToStr( name: Any ) -> AnyObject? {
         
         var returnObject: AnyObject?
         
@@ -275,7 +275,7 @@ extension JSONSerializable {
      
      */
     
-    func getInBackground<T:JSONSerializable>(_ objectID: String, ofType type:T.Type , appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: T) -> ()) {
+    public func getInBackground<T:JSONSerializable>(_ objectID: String, ofType type:T.Type , appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: T) -> ()) {
         
         let className = ("\(type(of: self))")
         
@@ -348,7 +348,7 @@ extension JSONSerializable {
      - data: return array of objects
      */
     
-    func getGenericAllInBackground(tableName: String, appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: GenericTable? ) -> ()) {
+    public func getGenericAllInBackground(tableName: String, appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: GenericTable? ) -> ()) {
         
         //let className = ("\(type(of: T()))")
         
@@ -472,7 +472,7 @@ extension JSONSerializable {
         return false
     }
     
-    func genericRemoveInBackground(_ objectID: String, collectioName: String, appKey: String = "", deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+    public func genericRemoveInBackground(_ objectID: String, collectioName: String, appKey: String = "", deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
         var url: String = ""
         url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
@@ -528,7 +528,7 @@ extension JSONSerializable {
     
     
     
-    func removeInBackground(_ objectID: String, appKey: String = "", deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+    public func removeInBackground(_ objectID: String, appKey: String = "", deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
         let className = ("\(type(of: self))")
         
@@ -587,7 +587,7 @@ extension JSONSerializable {
     }
     
     
-    func sendInBackground(_ objectID: String, appKey: String = "", postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
+    public func sendInBackground(_ objectID: String, appKey: String = "", postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
         let className = ("\(type(of: self))")
         
@@ -650,7 +650,7 @@ extension JSONSerializable {
     }
 }
 
-extension Array where Element: JSONSerializable {
+public extension Array where Element: JSONSerializable {
     
     /**
      getFilteredInBackground
@@ -662,7 +662,7 @@ extension Array where Element: JSONSerializable {
      
      */
     
-    func getFilteredInBackground<T:JSONSerializable>(ofType type:T.Type,  query: [String:AnyObject], appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
+    public func getFilteredInBackground<T:JSONSerializable>(ofType type:T.Type,  query: [String:AnyObject], appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
         
         let className = ("\(type(of: T()))")
         
@@ -755,7 +755,7 @@ extension Array where Element: JSONSerializable {
      - data: return array of objects
      */
     
-    func getAllInBackground<T:JSONSerializable>(ofType type:T.Type, appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
+    public func getAllInBackground<T:JSONSerializable>(ofType type:T.Type, appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
         
         let className = ("\(type(of: T()))")
         

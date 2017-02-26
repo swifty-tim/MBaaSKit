@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Float {
+public extension Float {
     /// Rounds the double to decimal places value
     func roundTo(places:Int) -> Float {
         let divisor = pow(10.0, Float(places))
@@ -17,7 +17,7 @@ extension Float {
 }
 
 
-extension CGFloat {
+public extension CGFloat {
     var radians: CGFloat {
         return self * CGFloat(2 * M_PI / 360)
     }

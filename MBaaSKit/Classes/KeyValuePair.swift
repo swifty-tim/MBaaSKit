@@ -8,28 +8,28 @@
 
 import Foundation
 
-class KeyValuePair {
+public class KeyValuePair {
     
     let key: String
     let value: String
     
-    init(key: String, value:String) {
+    public init(key: String, value:String) {
         self.key = key
         self.value = value
     }
 }
 
-struct Document: JSONSerializable {
+public struct Document: JSONSerializable {
     
     var hasChildren: Int = 0
     var key: String?
     var value : AnyObject?
     var children: [Document]?
     
-    init() {}
-    init(jsonObject : TBJSON) {}
+    public init() {}
+    public init(jsonObject : TBJSON) {}
     
-    init( key: String, value: AnyObject, children: [Document] = [], hasChildren: Int = 0 ) {
+    public init( key: String, value: AnyObject, children: [Document] = [], hasChildren: Int = 0 ) {
         self.key = key
         self.value = value
         self.children = children
@@ -37,14 +37,14 @@ struct Document: JSONSerializable {
     }
 }
 
-struct GenericTable: JSONSerializable {
+public struct GenericTable: JSONSerializable {
     
     var row: [Document]!
     
-    init() {}
-    init(jsonObject : TBJSON) {}
+    public init() {}
+    public init(jsonObject : TBJSON) {}
     
-    init(dict: [Document]) {
+    public init(dict: [Document]) {
         self.row = dict
     }
     
