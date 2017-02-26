@@ -17,7 +17,7 @@ import Foundation
 import UIKit
 import SystemConfiguration
 
-class PrintLn {
+public class PrintLn {
     
     class func readPlistDebugMode() -> Bool {
         var debugMode = false
@@ -53,7 +53,7 @@ protocol AlertMessageDelegate {
     func buttonPressRequest(result: Int)
 }
 
-class ShowAlert {
+public class ShowAlert {
     
     var alertDelegate : AlertMessageDelegate?
     
@@ -78,7 +78,7 @@ class ShowAlert {
     }
 }
 
-class ShowPlainAlert {
+public class ShowPlainAlert {
     
     class func presentAlert( curView : UIViewController, title: String, message: String, okButton: String = "OK" ) {
         
@@ -99,7 +99,7 @@ class ShowPlainAlert {
 
 
 
-class RCNetwork {
+public class RCNetwork {
     
     class func isInternetAvailable() -> Bool
     {

@@ -17,7 +17,7 @@ import Foundation
 
 public typealias TBJSON = [String:Any]
 
-class UniqueSting {
+public class UniqueSting {
     
     static func myNewUUID() -> String {
         let x = asMyUUID()
@@ -68,7 +68,7 @@ class UniqueSting {
     }
 }
 
-protocol JSONRepresentable {
+public protocol JSONRepresentable {
     var JSONRepresentation: AnyObject { get }
 }
 
@@ -87,7 +87,7 @@ protocol JSONRepresentable {
 //    init(dict: String)
 //}
 
-protocol JSONSerializable: JSONRepresentable {
+public protocol JSONSerializable: JSONRepresentable {
     
     init( jsonObject : TBJSON)
     init()
@@ -95,7 +95,7 @@ protocol JSONSerializable: JSONRepresentable {
 
 
 //: ### Implementing the functionality through protocol extensions
-extension JSONSerializable {
+public extension JSONSerializable {
     var JSONRepresentation: AnyObject {
         var representation = [String: AnyObject]()
         //print(self)

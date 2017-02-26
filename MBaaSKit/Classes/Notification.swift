@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TBNotification {
+public class TBNotification {
     
     private var deviceID: String = ""
     private var message: String = ""

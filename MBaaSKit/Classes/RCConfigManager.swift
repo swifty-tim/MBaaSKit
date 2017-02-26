@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class RCConfigManager {
+public class RCConfigManager {
     
     class func checkAndGetVersion(_ key: String, version: String) {
         

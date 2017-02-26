@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct TBInstallation: JSONSerializable {
+public struct TBInstallation: JSONSerializable {
     
     private var date:String!
     private var token:String!
@@ -23,9 +23,9 @@ struct TBInstallation: JSONSerializable {
         self.date = TBTime.nowDateTime()
     }
     
-    init() {}
+    public init() {}
     
-    init(jsonObject : TBJSON) {}
+    public init(jsonObject : TBJSON) {}
     
     //MARK: - Internal methods
     internal mutating func getBuildValues() {

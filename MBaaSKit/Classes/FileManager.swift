@@ -22,7 +22,7 @@ enum RCFileType {
 }
 
 
-class RCFileManager {
+public class RCFileManager {
     
     class func readPlistString( value: String, _ defaultStr: String = "") -> String {
         var defaultURL = defaultStr

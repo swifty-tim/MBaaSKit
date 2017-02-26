@@ -14,7 +14,7 @@ import Foundation
     import CoreServices
 #endif
 
-class HTTPSRequest {
+public class HTTPSRequest {
     
     
     class func httpPostFileRequest(path : String, endPoint : String, postCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
