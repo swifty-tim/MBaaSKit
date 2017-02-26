@@ -68,9 +68,10 @@ public class UniqueSting {
     }
 }
 
-public protocol JSONRepresentable {
-    var JSONRepresentation: AnyObject { get }
+public protocol TBJSONRepresentable {
+    var TBJSONRepresentation: AnyObject { get }
 }
+
 
 //protocol JSONSerializable: JSONRepresentable {
 //    var jsonObject: TBJSON {get set}
@@ -87,7 +88,7 @@ public protocol JSONRepresentable {
 //    init(dict: String)
 //}
 
-public protocol JSONSerializable: JSONRepresentable {
+public protocol TBJSONSerializable: TBJSONRepresentable {
     
     init( jsonObject : TBJSON)
     init()
@@ -95,8 +96,8 @@ public protocol JSONSerializable: JSONRepresentable {
 
 
 //: ### Implementing the functionality through protocol extensions
-public extension JSONSerializable {
-    var JSONRepresentation: AnyObject {
+public extension TBJSONSerializable {
+    var TBJSONRepresentation: AnyObject {
         var representation = [String: AnyObject]()
         //print(self)
         for case let (label?, value) in Mirror(reflecting: self).children {
@@ -118,9 +119,9 @@ public extension JSONSerializable {
                 for ( _, objectVal ) in value.enumerated() {
                     var dict = [String:AnyObject]()
                     
-                    if let jsonVal = objectVal as? JSONRepresentable {
+                    if let jsonVal = objectVal as? TBJSONRepresentable {
                         
-                        let jsonTest = jsonVal as! JSONSerializable
+                        let jsonTest = jsonVal as! TBJSONSerializable
                         
                         if let jsonData = jsonTest.toJSON() {
                             
@@ -140,10 +141,10 @@ public extension JSONSerializable {
                 if let myVal = convertToStr(name: value) {
                     representation[label] = myVal
                 } else {
-                    if let jsonVal = value as? JSONRepresentable {
+                    if let jsonVal = value as? TBJSONRepresentable {
                         var dict = [String:AnyObject]()
                         
-                        let jsonTest = jsonVal as! JSONSerializable
+                        let jsonTest = jsonVal as! TBJSONSerializable
                         if let jsonData = jsonTest.toJSON() {
                             
                             for (index, value) in convertStringToDictionary(text: jsonData) ?? [String: AnyObject]() {
@@ -165,7 +166,7 @@ public extension JSONSerializable {
     }
 }
 
-public extension JSONSerializable {
+public extension TBJSONSerializable {
     
     public func toData() -> [ String: AnyObject ]  {
         
@@ -177,7 +178,7 @@ public extension JSONSerializable {
     }
     
     public func toJSON() -> String? {
-        let representation = JSONRepresentation
+        let representation = TBJSONRepresentation
         
         guard JSONSerialization.isValidJSONObject(representation) else {
             return nil
@@ -206,7 +207,7 @@ public extension JSONSerializable {
     }
     
     public func toJSONObjects() -> [String : AnyObject]? {
-        let representation = JSONRepresentation
+        let representation = TBJSONRepresentation
         
         guard JSONSerialization.isValidJSONObject(representation) else {
             return nil
@@ -250,19 +251,19 @@ public extension JSONSerializable {
         }
         
         if name is Int {
-            returnObject = name as AnyObject
+            returnObject = "\(name)" as AnyObject
         }
         
         if name is Float {
-            returnObject = name as AnyObject
+            returnObject = "\(name)" as AnyObject
         }
         
         if name is Double {
-            returnObject = name as AnyObject
+            returnObject = "\(name)" as AnyObject
         }
         
         if name is CGFloat {
-            returnObject = name as AnyObject
+            returnObject = "\(name)" as AnyObject
         }
         
         return returnObject
@@ -275,7 +276,7 @@ public extension JSONSerializable {
      
      */
     
-    public func getInBackground<T:JSONSerializable>(_ objectID: String, ofType type:T.Type , appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: T) -> ()) {
+    public func getInBackground<T:TBJSONSerializable>(_ objectID: String, ofType type:T.Type , appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: T) -> ()) {
         
         let className = ("\(type(of: self))")
         
@@ -650,7 +651,7 @@ public extension JSONSerializable {
     }
 }
 
-public extension Array where Element: JSONSerializable {
+public extension Array where Element: TBJSONSerializable {
     
     /**
      getFilteredInBackground
@@ -662,7 +663,7 @@ public extension Array where Element: JSONSerializable {
      
      */
     
-    public func getFilteredInBackground<T:JSONSerializable>(ofType type:T.Type,  query: [String:AnyObject], appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
+    public func getFilteredInBackground<T:TBJSONSerializable>(ofType type:T.Type,  query: [String:AnyObject], appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
         
         let className = ("\(type(of: T()))")
         
@@ -755,7 +756,7 @@ public extension Array where Element: JSONSerializable {
      - data: return array of objects
      */
     
-    public func getAllInBackground<T:JSONSerializable>(ofType type:T.Type, appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
+    public func getAllInBackground<T:TBJSONSerializable>(ofType type:T.Type, appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
         
         let className = ("\(type(of: T()))")
         

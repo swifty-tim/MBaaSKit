@@ -7,7 +7,7 @@
 //
 import Foundation
 
-public struct TBInstallation: JSONSerializable {
+public struct TBInstallation: TBJSONSerializable {
     
     private var date:String!
     private var token:String!

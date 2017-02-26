@@ -60,7 +60,7 @@ public class TBAnalyitcs {
     }
     
     
-    struct TBAnalyitcs: JSONSerializable {
+    struct TBAnalyitcs: TBJSONSerializable {
         
         var timeStamp: String = ""
         var method: String = ""

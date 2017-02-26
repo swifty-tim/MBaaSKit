@@ -19,7 +19,7 @@ public class KeyValuePair {
     }
 }
 
-public struct Document: JSONSerializable {
+public struct Document: TBJSONSerializable {
     
     var hasChildren: Int = 0
     var key: String?
@@ -37,7 +37,7 @@ public struct Document: JSONSerializable {
     }
 }
 
-public struct GenericTable: JSONSerializable {
+public struct GenericTable: TBJSONSerializable {
     
     var row: [Document]!
     
