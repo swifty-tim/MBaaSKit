@@ -45,14 +45,14 @@ class TBNotification {
     }
     
     /**
+     Send Notificaitons
      - parameters:
-     - type: struct name
-     - getCompleted: return value of success state
-     - data: return array of objects
+     - appKey:
+     - notificationCompleted: return value of success state
+     - succeeded:
+     - data: message back if sent
      */
     func sendNotification(_ appKey: String = "", notificationCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
-        
-        //let networkURL = "http://Timothys-MacBook-Pro.local:8181/notification/"
         
         var url: String = ""
         url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
@@ -67,7 +67,7 @@ class TBNotification {
         
         let apiEndpoint = "/api/" + key
         
-        let networkURL =  url + apiEndpoint + "/notification/" //"http://Timothys-MacBook-Pro.local:8181/notification/"
+        let networkURL =  url + apiEndpoint + "/notification/"
         
         if (self.deviceID == "" && self.message == "") || (self.userID == "" && self.message == "") {
             notificationCompleted(false, "values not set")

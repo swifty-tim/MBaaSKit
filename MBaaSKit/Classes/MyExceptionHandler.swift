@@ -150,7 +150,7 @@ public class MyException: NSObject {
      :param: error NSError type
      */
     public func captureError(error : NSError, method: String? = #function, file: String? = #file, line: Int = #line) {
-        
+        self.captureMessage(message: error.localizedDescription, level: .Error, additionalExtra: [:], additionalTags: [:])
     }
     
     
@@ -162,15 +162,15 @@ public class MyException: NSObject {
      :param: additionalTags  Additional tags that will be sent with the log
      */
     public func captureMessage(message: String, level: ErrorLogLevel, additionalExtra:[String: AnyObject], additionalTags: [String: AnyObject], method:String? = #function, file:String? = #file, line:Int = #line) {
-            var stacktrace : [AnyObject] = []
-            var culprit : String = ""
-
-            if (method != nil && file != nil && line > 0) {
-                let filename = (file! as NSString).lastPathComponent;
-                let frame = ["filename" : filename, "function" : method!, "lineno" : line] as [String : Any]
-                stacktrace = [frame as AnyObject]
-                culprit = "\(method!) in \(filename)"
-            }
+//            var stacktrace : [AnyObject] = []
+//            var culprit : String = ""
+//
+//            if (method != nil && file != nil && line > 0) {
+//                let filename = (file! as NSString).lastPathComponent;
+//                let frame = ["filename" : filename, "function" : method!, "lineno" : line] as [String : Any]
+//                stacktrace = [frame as AnyObject]
+//                culprit = "\(method!) in \(filename)"
+//            }
     }
     
     
@@ -246,7 +246,6 @@ public class MyException: NSObject {
         
         let className = "Exceptions"
         
-        //let apiEndpoint = "http://Timothys-MacBook-Pro.local:8181/storage/"
         let networkURL = apiEndpoint + className
         
         let request = NSMutableURLRequest(url: NSURL(string: networkURL)! as URL)

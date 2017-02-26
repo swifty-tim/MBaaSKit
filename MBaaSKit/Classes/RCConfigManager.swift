@@ -71,22 +71,22 @@ class RCConfigManager {
     
     
     class func updateConfigFiles() {
-        print("updateConfigFiles")
         //RCFileManager.changeJSONFileName(oldName: RCFile.saveConfigJSON.rawValue, newName: RCFile.readConfigJSON.rawValue)
         //RCFileManager.changeJSONFileName(oldName: RCFile.saveLangJSON.rawValue, newName: RCFile.readLangJSON.rawValue)
         
         guard let doAnalytics = RCFileManager.readConfigVersion("doAnalytics") else {
             return
         }
-        
-        self.checkAndGetVersion("doAnalytics", version: doAnalytics)
+        UserDefaults.standard.set(doAnalytics, forKey: "doAnalytics")
+        //self.checkAndGetVersion("doAnalytics", version: doAnalytics)
         
         guard let version = RCFileManager.readConfigVersion("version") else {
             return
         }
-        
-        self.checkAndGetVersion("version", version: version)
+        UserDefaults.standard.set(version, forKey: "version")
+        //self.checkAndGetVersion("version", version: version)
     }
+
     
     /**
      getConfigVersion

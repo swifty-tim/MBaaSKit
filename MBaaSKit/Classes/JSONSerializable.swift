@@ -14,6 +14,9 @@
 //
 import Foundation
 
+
+public typealias TBJSON = [String:Any]
+
 class UniqueSting {
     
     static func myNewUUID() -> String {
@@ -69,20 +72,25 @@ protocol JSONRepresentable {
     var JSONRepresentation: AnyObject { get }
 }
 
-protocol JSONSerializable: JSONRepresentable {
-    init()
-    init(dict:[String:Any])
-    init(dict: [String])
-    init(dict: String)
-}
+//protocol JSONSerializable: JSONRepresentable {
+//    var jsonObject: TBJSON {get set}
+//    @objc optional  func setup()
+//    @objc optional func setup(dict:[String:Any])
+//    @objc optional func setup(dict: [String])
+//    @objc optional func setup(dict: String)
+//}
 
-extension JSONSerializable {
-    //    var databaseName: String {
-    //        get {
-    //            return self.databaseName
-    //        }
-    //        set(newVal) { self.databaseName = newVal }
-    //    }
+//protocol JSONSerializable: JSONRepresentable {
+//    init()
+//    init(dict:[String:Any])
+//    init(dict: [String])
+//    init(dict: String)
+//}
+
+protocol JSONSerializable: JSONRepresentable {
+    
+    init( jsonObject : TBJSON)
+    init()
 }
 
 
@@ -324,7 +332,7 @@ extension JSONSerializable {
                     return
                 }
                 
-                getCompleted(true, T(dict: object as! [String:Any]))
+                getCompleted(true, T(jsonObject: object as! TBJSON ))
                 
             } catch let error as NSError {
                 print(error)
@@ -718,14 +726,14 @@ extension Array where Element: JSONSerializable {
                 for object in allObjects! {
                     
                     if let newObject = object as? [String:Any] {
-                        allT.append(T(dict: newObject ))
+                        allT.append(T(jsonObject: newObject ))
                     }
-                    else if let newStringArr = object as? [String] {
-                        allT.append(T(dict: newStringArr))
-                    }
-                    else if let newString = object as? String {
-                        allT.append(T(dict: newString))
-                    }
+//                    else if let newStringArr = object as? [String] {
+//                        allT.append(T(dict: newStringArr))
+//                    }
+//                    else if let newString = object as? String {
+//                        allT.append(T(dict: newString))
+//                    }
                 }
                 
             } catch let error as NSError {
@@ -797,14 +805,14 @@ extension Array where Element: JSONSerializable {
                 for object in allObjects! {
                     
                     if let newObject = object as? [String:Any] {
-                        allT.append(T(dict: newObject ))
+                        allT.append(T(jsonObject: newObject ))
                     }
-                    else if let newStringArr = object as? [String] {
-                        allT.append(T(dict: newStringArr))
-                    }
-                    else if let newString = object as? String {
-                        allT.append(T(dict: newString))
-                    }
+//                    else if let newStringArr = object as? [String] {
+//                        allT.append(T(dict: newStringArr))
+//                    }
+//                    else if let newString = object as? String {
+//                        allT.append(T(dict: newString))
+//                    }
                 }
                 
             } catch let error as NSError {

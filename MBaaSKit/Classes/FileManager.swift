@@ -1,9 +1,9 @@
 //
-//  FileManager.swift
-//  Pods
+//  RCFileManager.swift
+//  Remote Config
 //
-//  Created by Timothy Barnard on 19/02/2017.
-//
+//  Created by Timothy Barnard on 29/10/2016.
+//  Copyright © 2016 Timothy Barnard. All rights reserved.
 //
 
 import Foundation

@@ -27,10 +27,7 @@ struct Document: JSONSerializable {
     var children: [Document]?
     
     init() {}
-    init(dict: [String : Any]) {}
-    
-    init(dict: [String]) {}
-    init(dict: String) {}
+    init(jsonObject : TBJSON) {}
     
     init( key: String, value: AnyObject, children: [Document] = [], hasChildren: Int = 0 ) {
         self.key = key
@@ -45,10 +42,7 @@ struct GenericTable: JSONSerializable {
     var row: [Document]!
     
     init() {}
-    init(dict: [String : Any]) {}
-    
-    init(dict: [String]) {}
-    init(dict: String) {}
+    init(jsonObject : TBJSON) {}
     
     init(dict: [Document]) {
         self.row = dict

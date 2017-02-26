@@ -25,11 +25,7 @@ struct TBInstallation: JSONSerializable {
     
     init() {}
     
-    init(dict: String) {}
-    
-    init(dict: [String]) {}
-    
-    init(dict: [String : Any]) {}
+    init(jsonObject : TBJSON) {}
     
     //MARK: - Internal methods
     internal mutating func getBuildValues() {
