@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum SendType: String {
+public enum SendType: String {
     case OpenApp = "OpenApp"
     case CloseApp = "CloseApp"
     case ViewOpen = "ViewOpen"
@@ -79,7 +79,7 @@ public class TBAnalyitcs {
      - parameters:
      - app: Self if running from AppDelegate class
      */
-    class func sendOpenApp(_ app: UIResponder , method: String? = #function , file: String? = #file) {
+    public class func sendOpenApp(_ app: UIResponder , method: String? = #function , file: String? = #file) {
         self.sendData(String(describing: type(of: app)), file: file ?? "", method: method ?? "", type: .OpenApp )
     }
     
@@ -88,7 +88,7 @@ public class TBAnalyitcs {
      - parameters:
      - app: Self if running from UIVIew class
      */
-    class func sendOpenApp(_ view: UIView , method: String? = #function , file: String? = #file){
+    public class func sendOpenApp(_ view: UIView , method: String? = #function , file: String? = #file){
         self.sendData(String(describing: type(of: view)), file: file ?? "", method: method ?? "", type: .OpenApp  )
     }
     
@@ -97,7 +97,7 @@ public class TBAnalyitcs {
      - parameters:
      - app: Self if running from AppDelegate class
      */
-    class func sendCloseApp(_ app: UIResponder , method: String? = #function , file: String? = #file) {
+    public class func sendCloseApp(_ app: UIResponder , method: String? = #function , file: String? = #file) {
         self.sendData(String(describing: type(of: app)), file: file ?? "", method: method ?? "", type: .CloseApp )
     }
     
@@ -106,7 +106,7 @@ public class TBAnalyitcs {
      - parameters:
      - app: Self if running from UIView class
      */
-    class func sendCloseApp(_ view: UIView , method: String? = #function , file: String? = #file){
+    public class func sendCloseApp(_ view: UIView , method: String? = #function , file: String? = #file){
         self.sendData(String(describing: type(of: view)), file: file ?? "", method: method ?? "", type: .CloseApp )
     }
     
@@ -115,7 +115,7 @@ public class TBAnalyitcs {
      - parameters:
      - view: Self if running from UIView class
      */
-    class func sendButtonClick(_ view: UIView , method: String? = #function , file: String? = #file){
+    public class func sendButtonClick(_ view: UIView , method: String? = #function , file: String? = #file){
         self.sendData(String(describing: type(of: view)), file: file ?? "", method: method ?? "", type: .ButtonClick )
     }
     
@@ -125,7 +125,7 @@ public class TBAnalyitcs {
      - parameters:
      - view: Self if running from UIViewController class
      */
-    class func sendButtonClick(_ view: UIViewController , method: String? = #function , file: String? = #file){
+    public class func sendButtonClick(_ view: UIViewController , method: String? = #function , file: String? = #file){
         self.sendData(String(describing: type(of: view)), file: file ?? "", method: method ?? "", type: .ButtonClick)
     }
     
@@ -134,7 +134,7 @@ public class TBAnalyitcs {
      - parameters:
      - view: Self if running from UIView class
      */
-    class func sendViewOpen(_ view: UIView , method: String? = #function , file: String? = #file){
+    public class func sendViewOpen(_ view: UIView , method: String? = #function , file: String? = #file){
         self.sendData(String(describing: type(of: view)), file: file ?? "", method: method ?? "", type: .ViewOpen )
     }
     
@@ -144,7 +144,7 @@ public class TBAnalyitcs {
      - parameters:
      - view: Self if running from UIViewController class
      */
-    class func sendViewOpen(_ view: UIViewController , method: String? = #function , file: String? = #file){
+    public class func sendViewOpen(_ view: UIViewController , method: String? = #function , file: String? = #file){
         self.sendData(String(describing: type(of: view)), file: file ?? "", method: method ?? "", type: .ViewOpen)
     }
     
@@ -153,7 +153,7 @@ public class TBAnalyitcs {
      - parameters:
      - view: Self if running from UIView class
      */
-    class func sendViewClose(_ view: UIView , method: String? = #function , file: String? = #file){
+    public class func sendViewClose(_ view: UIView , method: String? = #function , file: String? = #file){
         self.sendData(String(describing: type(of: view)), file: file ?? "", method: method ?? "", type: .ViewClose )
     }
     
@@ -162,7 +162,7 @@ public class TBAnalyitcs {
      - parameters:
      - view: Self if running from UIViewController class
      */
-    class func sendViewClose(_ view: UIViewController , method: String? = #function , file: String? = #file){
+    public class func sendViewClose(_ view: UIViewController , method: String? = #function , file: String? = #file){
         self.sendData(String(describing: type(of: view)), file: file ?? "", method: method ?? "", type: .ViewClose)
     }
     
@@ -172,7 +172,7 @@ public class TBAnalyitcs {
      - view: Self if running from UIResponder class
      - type: of tpye SendType
      */
-    class func send(_ app: UIResponder, type: SendType , method: String? = #function , file: String? = #file) {
+    public class func send(_ app: UIResponder, type: SendType , method: String? = #function , file: String? = #file) {
         self.sendData(String(describing: type(of: app)), file: file ?? "", method: method ?? "", type: type )
     }
     
@@ -201,7 +201,7 @@ public class TBAnalyitcs {
      - parameters:
      - view: Self if running from UIResponder class
      */
-    class func send(_ app: UIResponder , method: String? = #function , file: String? = #file) {
+    public class func send(_ app: UIResponder , method: String? = #function , file: String? = #file) {
         self.sendData(String(describing: type(of: app)), file: file ?? "", method: method ?? "" )
     }
     
@@ -210,7 +210,7 @@ public class TBAnalyitcs {
      - parameters:
      - view: Self if running from UIView class
      */
-    class func send(_ view: UIView , method: String? = #function , file: String? = #file){
+    public class func send(_ view: UIView , method: String? = #function , file: String? = #file){
         self.sendData(String(describing: type(of: view)), file: file ?? "", method: method ?? "" )
     }
     
@@ -219,7 +219,7 @@ public class TBAnalyitcs {
      - parameters:
      - view: Self if running from UIViewController class
      */
-    class func send(_ view: UIViewController , method: String? = #function , file: String? = #file){
+    public class func send(_ view: UIViewController , method: String? = #function , file: String? = #file){
         self.sendData(String(describing: type(of: view)), file: file ?? "", method: method ?? "" )
     }
     
