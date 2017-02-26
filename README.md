@@ -41,10 +41,8 @@ struct TestObject: JSONSerializable {
     init(name:String) {
         self.name = name
     }
-
-
-    init( dict: [String:Any] ) {
-        self.name = dict["name"] as! String
+    init( jsonObject : TBJSON) {
+        self.name = jsonObject.tryConvert("name")
     }
 }
 
