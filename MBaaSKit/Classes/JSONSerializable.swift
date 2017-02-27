@@ -681,8 +681,9 @@ public extension Array where Element: TBJSONSerializable {
         
         let apiEndpoint = "/api/"+key+"/storage/query/"
 
+        let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
         
-        let networkURL = url + apiEndpoint + className
+        let networkURL = url + apiEndpoint + className + "?appversion=" + appVersion
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")
@@ -720,7 +721,22 @@ public extension Array where Element: TBJSONSerializable {
             
             do {
                 
-                let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                guard let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String:Any] else {
+                    return
+                }
+                
+                guard let configObject = dataObjects["config"] as? [String:Any] else {
+                    return
+                }
+                
+                let version: String = configObject.tryConvert(forKey: "version")
+                
+                if version != "0.0" {
+                    
+                    RCConfigManager.getConfigVersion()
+                    
+                }
+
                 
                 let allObjects = dataObjects["data"] as? NSArray
                 
@@ -773,7 +789,9 @@ public extension Array where Element: TBJSONSerializable {
         
         let apiEndpoint = "/api/"+key+"/storage/"
 
-        let networkURL = url + apiEndpoint + className
+        let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
+        
+        let networkURL = url + apiEndpoint + className + "?appversion=" + appVersion
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")
@@ -799,7 +817,22 @@ public extension Array where Element: TBJSONSerializable {
             
             do {
                 
-                let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                guard let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String:Any] else {
+                    return
+                }
+                
+                guard let configObject = dataObjects["config"] as? [String:Any] else {
+                    return
+                }
+                
+                let version: String = configObject.tryConvert(forKey: "version")
+                
+                if version != "0.0" {
+                    
+                    RCConfigManager.getConfigVersion()
+                    
+                }
+
                 
                 let allObjects = dataObjects["data"] as? NSArray
                 

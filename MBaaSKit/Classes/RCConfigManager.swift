@@ -10,7 +10,7 @@ import UIKit
 
 public class RCConfigManager {
     
-    class func checkAndGetVersion(_ key: String, version: String) {
+    private func checkAndGetVersion(_ key: String, version: String) {
         
         UserDefaults.standard.set(key, forKey: version)
     }
@@ -67,6 +67,15 @@ public class RCConfigManager {
             return false
         }
         
+    }
+    
+    class func getConfigVersion() {
+        
+        self.getConfigVersion { (completed, data) in
+            DispatchQueue.main.async {
+                
+            }
+        }
     }
     
     
