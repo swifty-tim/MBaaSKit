@@ -144,6 +144,8 @@ public class RCConfigManager {
             
             RCFileManager.writeJSONFile(jsonData: data as NSData, fileType: .config)
             
+            self.updateConfigFiles()
+            
             getCompleted(true, "success")
             
             }.resume()
