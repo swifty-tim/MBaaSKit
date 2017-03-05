@@ -18,7 +18,7 @@ public class TBNotification {
     private var title:String = ""
     private var status:String = "0"
     
-    init(){}
+    public init(){}
     
     public func setDeviceID(_ deviceID:String) {
         self.deviceID = deviceID
