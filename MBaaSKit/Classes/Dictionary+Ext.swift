@@ -65,7 +65,7 @@ public extension Dictionary {
     /// - parameter defaultVal: If the key is not found then return default
     ///
     /// - returns:              The coverted string
-    public func tryConvert(forKey key:Key, _ defaultVal :String = "" ) -> String {
+    func tryConvert(forKey key:Key, _ defaultVal :String = "" ) -> String {
         
         guard let test = self[key] as? String else {
             return defaultVal
@@ -73,32 +73,55 @@ public extension Dictionary {
         return test
     }
     
-    public func tryConvert(forKey key:Key, _ defaultVal :Int = 0 ) -> Int {
+    func tryConvert(forKey key:Key, _ defaultVal :Int = 0 ) -> Int {
         
-        guard let test = self[key] as? Int else {
-            return defaultVal
+        var value = defaultVal
+        
+        if let int = self[key] as? Int {
+            value =  int
+            
+        } else {
+            
+            guard let test = self[key] as? String else {
+                return defaultVal
+            }
+            guard let integerVal =  Int(test) else {
+                return defaultVal
+            }
+            
+            value = integerVal
         }
-        return test
+        
+        return value
     }
     
-    public func tryConvert(forKey key:Key, _ defaultVal :Float = 0 ) -> Float {
+    func tryConvert(forKey key:Key, _ defaultVal :Float = 0 ) -> Float {
         
-        guard let test = self[key] as? Float else {
+        guard let test = self[key] as? String else {
             return defaultVal
         }
-        return test
-    }
-    
-    public func tryConvert(forKey key:Key, _ defaultVal :CGFloat = 0 ) -> CGFloat {
         
-        guard let test = self[key] as? CGFloat else {
+        guard let floatVal =  Float(test) else {
             return defaultVal
         }
-        return test
+        
+        return floatVal
+    }
+    
+    func tryConvert(forKey key:Key, _ defaultVal :CGFloat = 0 ) -> CGFloat {
+        
+        guard let test = self[key] as? String else {
+            return defaultVal
+        }
+        if let n = NumberFormatter().number(from: test) {
+            return CGFloat(n)
+        }
+        
+        return defaultVal
     }
     
     
-    public func tryConvert(forKey key:Key, _ defaultVal :Bool = false ) -> Bool {
+    func tryConvert(forKey key:Key, _ defaultVal :Bool = false ) -> Bool {
         
         guard let test = self[key] as? Int else {
             return defaultVal
@@ -106,15 +129,19 @@ public extension Dictionary {
         return (test  == 1) ? true : false
     }
     
-    public func tryConvert(forKey key:Key, _ defaultVal : Double = 0 ) -> Double {
+    func tryConvert(forKey key:Key, _ defaultVal : Double = 0 ) -> Double {
         
-        guard let test = self[key] as? Double else {
+        guard let test = self[key] as? String else {
             return defaultVal
         }
-        return test
+        guard let doubleVal =  Double(test) else {
+            return defaultVal
+        }
+        
+        return doubleVal
     }
     
-    public func tryConvert(forKey key:Key, _ defaultVal : [String] = [String]() ) -> [String] {
+    func tryConvert(forKey key:Key, _ defaultVal : [String] = [String]() ) -> [String] {
         
         guard let test = self[key] as? [String] else {
             return defaultVal
@@ -122,7 +149,7 @@ public extension Dictionary {
         return test
     }
     
-    public func tryConvert(forKey key:Key, _ defaultVal : [Double] = [Double]() ) -> [Double] {
+    func tryConvert(forKey key:Key, _ defaultVal : [Double] = [Double]() ) -> [Double] {
         
         guard let test = self[key] as? [Double] else {
             return defaultVal
@@ -130,7 +157,7 @@ public extension Dictionary {
         return test
     }
     
-    public func tryConvert(forKey key:Key, _ defaultVal : [Int] = [Int]() ) -> [Int] {
+    func tryConvert(forKey key:Key, _ defaultVal : [Int] = [Int]() ) -> [Int] {
         
         guard let test = self[key] as? [Int] else {
             return defaultVal
@@ -138,7 +165,7 @@ public extension Dictionary {
         return test
     }
     
-    public func tryConvertObj(forKey key:Key, _ defaultVal : [String:AnyObject] = [String:AnyObject]() ) -> [String:AnyObject] {
+    func tryConvertObj(forKey key:Key, _ defaultVal : [String:AnyObject] = [String:AnyObject]() ) -> [String:AnyObject] {
         
         guard let test = self[key] as? [String:AnyObject] else {
             return defaultVal
