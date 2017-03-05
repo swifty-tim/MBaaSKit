@@ -16,6 +16,7 @@ import Foundation
 
 
 public typealias TBJSON = [String:Any]
+public typealias TBObjectID = String
 
 public class UniqueSting {
     
