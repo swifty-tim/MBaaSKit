@@ -20,22 +20,22 @@ public class TBNotification {
     
     init(){}
     
-    func setDeviceID(_ deviceID:String) {
+    public func setDeviceID(_ deviceID:String) {
         self.deviceID = deviceID
     }
-    func setMessage(_ message:String) {
+    public func setMessage(_ message:String) {
         self.message = message
     }
-    func setUserID(_ userID:String) {
+    public func setUserID(_ userID:String) {
         self.userID = userID
     }
-    func setTitle(_ title:String) {
+    public func setTitle(_ title:String) {
         self.title = title
     }
-    func setBadgeNo(_ no: Int) {
+    public func setBadgeNo(_ no: Int) {
         self.badgeNo = "\(no)"
     }
-    func setContentAvailable(_ set: Bool) {
+    public func setContentAvailable(_ set: Bool) {
         switch set {
         case true:
             self.contentAvailable = "1"
@@ -52,7 +52,7 @@ public class TBNotification {
      - succeeded:
      - data: message back if sent
      */
-    func sendNotification(_ appKey: String = "", notificationCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+    public func sendNotification(_ appKey: String = "", notificationCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
         var url: String = ""
         url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
