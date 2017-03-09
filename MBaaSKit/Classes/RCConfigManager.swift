@@ -72,34 +72,34 @@ public class RCConfigManager {
             return false
         }
     }
-    /**
-     getConfigVersion
-     - parameters
-     - getCompleted: return value of success state
-     - data: return array of objects
-     */
-    public class func getConfigVersion() {
-        
-        self.getConfigVersion { (completed, data) in
-            DispatchQueue.main.async {
-                
-            }
-        }
-    }
-    /**
-     getConfigThemeVersion
-     - parameters
-     - getCompleted: return value of success state
-     - data: return array of objects
-     */
-    public class func getConfigThemeVersion(theme:String ) {
-        
-        self.getConfigThemeVersion(theme:theme) { (completed, data) in
-            DispatchQueue.main.async {
-                
-            }
-        }
-    }
+//    /**
+//     getConfigVersion
+//     - parameters
+//     - getCompleted: return value of success state
+//     - data: return array of objects
+//     */
+//    public class func getConfigVersion() {
+//        
+//        self.getConfigVersion { (completed, data) in
+//            DispatchQueue.main.async {
+//                
+//            }
+//        }
+//    }
+//    /**
+//     getConfigThemeVersion
+//     - parameters
+//     - getCompleted: return value of success state
+//     - data: return array of objects
+//     */
+//    public class func getConfigThemeVersion(theme:String ) {
+//        
+//        self.getConfigThemeVersion(theme:theme) { (completed, data) in
+//            DispatchQueue.main.async {
+//                
+//            }
+//        }
+//    }
 
     
     
@@ -127,7 +127,7 @@ public class RCConfigManager {
      - getCompleted: return value of success state
      - data: return array of objects
      */
-    private class func getConfigThemeVersion(theme:String, getCompleted : @escaping (_ succeeded: Bool, _ message: String ) -> ()) {
+    public class func getConfigThemeVersion(theme:String, getCompleted : @escaping (_ succeeded: Bool, _ message: String ) -> ()) {
         
         var version: String = ""
         
@@ -183,7 +183,7 @@ public class RCConfigManager {
      - getCompleted: return value of success state
      - data: return array of objects
      */
-    private class func getConfigVersion(getCompleted : @escaping (_ succeeded: Bool, _ message: String ) -> ()) {
+    public class func getConfigVersion(getCompleted : @escaping (_ succeeded: Bool, _ message: String ) -> ()) {
         
         var version: String = ""
         
