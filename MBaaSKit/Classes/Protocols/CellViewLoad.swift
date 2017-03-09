@@ -34,34 +34,34 @@ public extension CellViewLoad where Self: UITableViewCell {
         for (key, value) in dict {
             
             switch key {
-            case "textLabel_text":
+            case "textLabel_text" where dict.tryConvert(forKey: key) != "":
                 self.textLabel?.text = value as? String
                 break
-            case "textLabel_BkgdColor":
+            case "textLabel_BkgdColor" where dict.tryConvert(forKey: key) != "":
                 self.textLabel?.backgroundColor = RCFileManager.readJSONColor(keyVal: value as! String)
                 break
-            case "detailLabel_text":
+            case "detailLabel_text" where dict.tryConvert(forKey: key) != "":
                 self.detailTextLabel?.text = value as? String
                 break
-            case "detailLabel_BkgdColor":
+            case "detailLabel_BkgdColor" where dict.tryConvert(forKey: key) != "":
                 self.detailTextLabel?.backgroundColor = RCFileManager.readJSONColor(keyVal: value as! String)
                 break
-            case "backgroundColor":
+            case "backgroundColor" where dict.tryConvert(forKey: key) != "":
                 self.contentView.backgroundColor = RCFileManager.readJSONColor(keyVal: value as! String)
                 break
-            case "font":
+            case "font" where dict.tryConvert(forKey: key) != "":
                 fontName = (value as! String)
                 break
-            case "fontSize":
+            case "fontSize" where dict.tryConvert(forKey: key) != "":
                 size = value as! CGFloat
                 break
-            case "isMultipleTouchEnabled":
+            case "isMultipleTouchEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isMultipleTouchEnabled = ((value as! Int)  == 1) ? true : false
                 break
             case "isHidden":
                 self.isHidden = ((value as! Int)  == 1) ? true : false
                 break
-            case "isUserInteractionEnabled":
+            case "isUserInteractionEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isUserInteractionEnabled = ((value as! Int)  == 1) ? true : false
                 break
             default: break

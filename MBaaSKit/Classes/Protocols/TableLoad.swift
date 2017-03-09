@@ -33,15 +33,15 @@ public extension TableLoad where Self: UITableView {
         
         for (key, value) in dict {
             switch key {
-            case "isScrollEnabled":
+            case "isScrollEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isScrollEnabled = ((value as! Int)  == 1) ? true : false
                 break
-            case "isHidden":
+            case "isHidden" where dict.tryConvert(forKey: key) != "":
                 self.isHidden = ((value as! Int)  == 1) ? true : false
-            case "allowsSelection":
+            case "allowsSelection" where dict.tryConvert(forKey: key) != "":
                 self.allowsSelection = ((value as! Int)  == 1) ? true : false
                 break
-            case "backgroundColor":
+            case "backgroundColor" where dict.tryConvert(forKey: key) != "":
                 self.backgroundColor = RCConfigManager.getColor(name: dict.tryConvert(forKey: "backgroundColor"))
                 break
             default: break

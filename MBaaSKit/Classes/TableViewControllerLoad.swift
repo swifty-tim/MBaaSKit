@@ -31,16 +31,16 @@ public extension TableViewControllerLoad where Self: UITableViewController {
         for (key, _) in dict {
             
             switch key {
-            case "title":
+            case "title" where dict.tryConvert(forKey: key) != "":
                 self.title =  dict.tryConvert(forKey: key)
                 break
-            case "backgroundColor":
+            case "backgroundColor" where dict.tryConvert(forKey: key) != "":
                 self.view.backgroundColor = RCFileManager.readJSONColor(keyVal:  dict.tryConvert(forKey: key) )
                 break
-            case "isUserInteractionEnabled":
+            case "isUserInteractionEnabled" where dict.tryConvert(forKey: key) != "":
                 self.view.isUserInteractionEnabled = dict.tryConvert(forKey: key)
                 break
-            case "isHidden":
+            case "isHidden" where dict.tryConvert(forKey: key) != "":
                 self.view.isHidden = dict.tryConvert(forKey: key)
                 break
                 

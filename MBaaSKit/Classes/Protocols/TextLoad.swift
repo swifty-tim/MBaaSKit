@@ -34,33 +34,33 @@ public extension TextLoad where Self: UITextField {
         for (key, value) in dict {
             
             switch key {
-            case "text":
+            case "text" where dict.tryConvert(forKey: key) != "":
                 //self.text = value as? String
                 break
-            case "textAlignment":
+            case "textAlignment" where dict.tryConvert(forKey: key) != "":
                 self.textAlignment = NSTextAlignment(rawValue: (value as! Int))!
-            case "backgroundColor":
+            case "backgroundColor" where dict.tryConvert(forKey: key) != "":
                 self.backgroundColor = RCFileManager.readJSONColor(keyVal: value as! String)
                 break
-            case "font":
+            case "font" where dict.tryConvert(forKey: key) != "":
                 fontName = (value as! String)
                 break
-            case "fontSize":
+            case "fontSize" where dict.tryConvert(forKey: key) != "":
                 size = value as! CGFloat
                 break
-            case "textColor":
+            case "textColor" where dict.tryConvert(forKey: key) != "":
                 self.textColor = RCFileManager.readJSONColor(keyVal: value as! String)
                 break
-            case "placeholder":
+            case "placeholder" where dict.tryConvert(forKey: key) != "":
                 self.placeholder = (value as! String)
                 break
-            case "isEnabled":
+            case "isEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isEnabled = ((value as! Int)  == 1) ? true : false
                 break
-            case "isHidden":
+            case "isHidden" where dict.tryConvert(forKey: key) != "":
                 self.isHidden = ((value as! Int)  == 1) ? true : false
                 break
-            case "isUserInteractionEnabled":
+            case "isUserInteractionEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isUserInteractionEnabled = ((value as! Int)  == 1) ? true : false
                 break
             default: break

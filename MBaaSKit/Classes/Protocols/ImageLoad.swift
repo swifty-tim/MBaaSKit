@@ -32,15 +32,15 @@ public extension ImageLoad where Self: UIImageView {
         
         for (key, value) in dict {
             switch key {
-            case "image":
+            case "image" where dict.tryConvert(forKey: key) != "":
                 self.image = UIImage(named: value as! String)
                 break
-            case "contentMode":
+            case "contentMode" where dict.tryConvert(forKey: key) != "":
                 self.contentMode = UIViewContentMode(rawValue: (value as! Int))!
-            case "isHidden":
+            case "isHidden" where dict.tryConvert(forKey: key) != "":
                 self.isHidden = ((value as! Int)  == 1) ? true : false
                 break
-            case "isUserInteractionEnabled":
+            case "isUserInteractionEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isUserInteractionEnabled = ((value as! Int)  == 1) ? true : false
                 break
             default: break

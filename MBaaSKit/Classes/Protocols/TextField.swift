@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TBTextField: UITextField, TextLoad {
+public class RCTextField: UITextField, TextLoad {
 
     /*
     // Only override draw() if you perform custom drawing.

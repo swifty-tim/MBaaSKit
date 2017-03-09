@@ -34,30 +34,30 @@ public extension LabelLoad where Self: UILabel {
         for (key, value) in dict {
             
             switch key {
-            case "text":
+            case "text" where dict.tryConvert(forKey: key) != "":
                 self.text = RCConfigManager.getTranslation(name: viewName)
                 break
-            case "textAlignment":
+            case "textAlignment" where dict.tryConvert(forKey: key) != "":
                 self.textAlignment = NSTextAlignment(rawValue: (value as! Int))!
-            case "backgroundColor":
+            case "backgroundColor" where dict.tryConvert(forKey: key) != "":
                 self.backgroundColor = RCConfigManager.getColor(name: (value as! String), defaultColor: .white)
                 break
-            case "font":
+            case "font" where dict.tryConvert(forKey: key) != "":
                 fontName = (value as! String)
                 break
-            case "fontSize":
+            case "fontSize" where dict.tryConvert(forKey: key) != "":
                 size = value as! CGFloat
                 break
-            case "textColor":
+            case "textColor" where dict.tryConvert(forKey: key) != "":
                 self.textColor = RCConfigManager.getColor(name: (value as! String), defaultColor: .black)
                 break
-            case "isEnabled":
+            case "isEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isEnabled = ((value as! Int)  == 1) ? true : false
                 break
-            case "isHidden":
+            case "isHidden" where dict.tryConvert(forKey: key) != "":
                 self.isHidden = ((value as! Int)  == 1) ? true : false
                 break
-            case "isUserInteractionEnabled":
+            case "isUserInteractionEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isUserInteractionEnabled = ((value as! Int)  == 1) ? true : false
                 break
             default: break

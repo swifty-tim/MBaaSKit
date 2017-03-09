@@ -61,7 +61,7 @@ public extension TabBarLoad where Self: UITabBarController {
         for (key, value) in dict {
             
             switch key {
-            case "tabBarItems":
+            case "tabBarItems" where dict.tryConvert(forKey: key) != "":
                 
                 self.tabBar.items?.removeAll()
                 
@@ -84,7 +84,7 @@ public extension TabBarLoad where Self: UITabBarController {
                     self.tabBar.items?.append(tabBarItem)
                 }
                 break
-            case "backgroundColor":
+            case "backgroundColor" where dict.tryConvert(forKey: key) != "":
                 self.view.backgroundColor = RCFileManager.readJSONColor(keyVal:  dict.tryConvert(forKey: key) )
                 break
                 

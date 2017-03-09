@@ -48,33 +48,33 @@ public extension ButtonLoad where Self: UIButton {
         for (key, _) in dict {
             
             switch key {
-            case "title":
+            case "title" where dict.tryConvert(forKey: key) != "":
                 self.setTitle( dict.tryConvert(forKey: key) , for: .normal)
                 break
-            case "backgroundColor":
+            case "backgroundColor" where dict.tryConvert(forKey: key) != "":
                 self.backgroundColor = RCFileManager.readJSONColor(keyVal:  dict.tryConvert(forKey: key) )
                 break
-            case "fontName":
+            case "fontName" where dict.tryConvert(forKey: key) != "":
                 fontName = dict.tryConvert(forKey: key)
                 break
-            case "fontSize":
+            case "fontSize" where dict.tryConvert(forKey: key) != "":
                 size = dict.tryConvert(forKey: key)
                 break
-            case "titleColor":
+            case "titleColor" where dict.tryConvert(forKey: key) != "":
                 self.setTitleColor(RCFileManager.readJSONColor(keyVal: dict.tryConvert(forKey: key)), for: .normal)
                 break
-            case "cornerRadius":
+            case "cornerRadius" where dict.tryConvert(forKey: key) != "":
                 self.layer.cornerRadius = 10
                 break
-            case "clipsToBounds":
+            case "clipsToBounds" where dict.tryConvert(forKey: key) != "":
                 self.clipsToBounds = dict.tryConvert(forKey: key)
-            case "isEnabled":
+            case "isEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isEnabled = dict.tryConvert(forKey: key)
                 break
-            case "isHidden":
+            case "isHidden" where dict.tryConvert(forKey: key) != "":
                 self.isHidden = dict.tryConvert(forKey: key)
                 break
-            case "isUserInteractionEnabled":
+            case "isUserInteractionEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isUserInteractionEnabled = dict.tryConvert(forKey: key)
                 break
             default: break
