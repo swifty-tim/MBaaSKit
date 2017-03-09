@@ -12,11 +12,11 @@ public protocol CellViewLoad { }
 
 public extension CellViewLoad where Self: UITableViewCell {
     
-    public func setupLabelView( className: UIViewController, name:String = "" ) {
+    public func setupCellView( className: UIViewController, name:String = "" ) {
         self.setup(className: String(describing: type(of: className)), tagValue: name )
     }
     
-    public func setupLabelView( className: UIView, name:String = "") {
+    public func setupCellView( className: UIView, name:String = "") {
         self.setup(className: String(describing: type(of: className)), tagValue: name)
     }
     
