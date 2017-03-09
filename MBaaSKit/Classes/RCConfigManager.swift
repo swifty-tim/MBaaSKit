@@ -15,7 +15,7 @@ public class RCConfigManager {
         UserDefaults.standard.set(key, forKey: version)
     }
     
-    class func getColor( name: String, defaultColor: UIColor = .black ) -> UIColor {
+    public class func getColor( name: String, defaultColor: UIColor = .black ) -> UIColor {
         
         guard let returnColor = RCFileManager.readJSONColor(keyVal: name) else {
             return defaultColor
@@ -24,7 +24,7 @@ public class RCConfigManager {
         return returnColor
     }
     
-    class func getTranslation( name: String, defaultName: String = "") -> String {
+    public class func getTranslation( name: String, defaultName: String = "") -> String {
         
         guard let returnTranslation = RCFileManager.readJSONTranslation(keyName: name) else {
             return defaultName
@@ -33,7 +33,7 @@ public class RCConfigManager {
         return returnTranslation
     }
     
-    class func getLangugeList() -> [String] {
+    public class func getLangugeList() -> [String] {
         
         let returnVal = [String]()
         
@@ -44,7 +44,7 @@ public class RCConfigManager {
         return returnTranslation
     }
     
-    class func getMainSetting(name: String, defaultName: String = "") -> String {
+    public class func getMainSetting(name: String, defaultName: String = "") -> String {
         
         guard let returnSetting = RCFileManager.readJSONMainSettings(keyName: name ) else {
             return defaultName
@@ -53,17 +53,17 @@ public class RCConfigManager {
         return returnSetting
     }
     
-    class func getObjectProperties( className: String, objectName: String  ) -> [String:AnyObject] {
+    public class func getObjectProperties( className: String, objectName: String  ) -> [String:AnyObject] {
         
         return RCFileManager.getJSONDict(parseKey: className, keyVal: objectName)
     }
     
-    class func getClassProperties(className: String  ) -> [String:AnyObject] {
+    public class func getClassProperties(className: String  ) -> [String:AnyObject] {
         
         return RCFileManager.getJSONClassProperties(parseKey: className)
     }
     
-    class func checkIfFilesExist() -> Bool {
+    public class func checkIfFilesExist() -> Bool {
         
         if RCFileManager.checkFilesExists(fileName: RCFile.readConfigJSON.rawValue)
             && RCFileManager.checkFilesExists(fileName: RCFile.readLangJSON.rawValue) {
@@ -72,8 +72,13 @@ public class RCConfigManager {
             return false
         }
     }
-    
-    class func getConfigVersion() {
+    /**
+     getConfigVersion
+     - parameters
+     - getCompleted: return value of success state
+     - data: return array of objects
+     */
+    public class func getConfigVersion() {
         
         self.getConfigVersion { (completed, data) in
             DispatchQueue.main.async {
@@ -81,8 +86,13 @@ public class RCConfigManager {
             }
         }
     }
-    
-    class func getConfigThemeVersion(theme:String ) {
+    /**
+     getConfigThemeVersion
+     - parameters
+     - getCompleted: return value of success state
+     - data: return array of objects
+     */
+    public class func getConfigThemeVersion(theme:String ) {
         
         self.getConfigThemeVersion(theme:theme) { (completed, data) in
             DispatchQueue.main.async {
@@ -93,7 +103,7 @@ public class RCConfigManager {
 
     
     
-    class func updateConfigFiles() {
+    private class func updateConfigFiles() {
         //RCFileManager.changeJSONFileName(oldName: RCFile.saveConfigJSON.rawValue, newName: RCFile.readConfigJSON.rawValue)
         //RCFileManager.changeJSONFileName(oldName: RCFile.saveLangJSON.rawValue, newName: RCFile.readLangJSON.rawValue)
         
@@ -117,7 +127,7 @@ public class RCConfigManager {
      - getCompleted: return value of success state
      - data: return array of objects
      */
-    class func getConfigThemeVersion(theme:String, getCompleted : @escaping (_ succeeded: Bool, _ message: String ) -> ()) {
+    private class func getConfigThemeVersion(theme:String, getCompleted : @escaping (_ succeeded: Bool, _ message: String ) -> ()) {
         
         var version: String = ""
         
@@ -173,7 +183,7 @@ public class RCConfigManager {
      - getCompleted: return value of success state
      - data: return array of objects
      */
-    class func getConfigVersion(getCompleted : @escaping (_ succeeded: Bool, _ message: String ) -> ()) {
+    private class func getConfigVersion(getCompleted : @escaping (_ succeeded: Bool, _ message: String ) -> ()) {
         
         var version: String = ""
         

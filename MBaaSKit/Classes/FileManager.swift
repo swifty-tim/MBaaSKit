@@ -16,13 +16,13 @@ enum RCFile : String {
     case readLangJSON = "langFile.json"
 }
 
-enum RCFileType {
+public enum RCFileType {
     case config
     case language
 }
 
 
-public class RCFileManager {
+class RCFileManager {
     
     class func readPlistString( value: String, _ defaultStr: String = "") -> String {
         var defaultURL = defaultStr
