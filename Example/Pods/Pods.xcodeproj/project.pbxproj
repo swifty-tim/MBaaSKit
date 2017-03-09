@@ -12,6 +12,8 @@
 		150A42DE1E703F2600D8C476 /* RCTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42DD1E703F2600D8C476 /* RCTabBarController.swift */; };
 		150A42E01E70435C00D8C476 /* RCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42DF1E70435C00D8C476 /* RCTableViewController.swift */; };
 		150A42E21E70437700D8C476 /* TableViewControllerLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42E11E70437700D8C476 /* TableViewControllerLoad.swift */; };
+		150A42EC1E71D64000D8C476 /* RCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42EB1E71D64000D8C476 /* RCViewController.swift */; };
+		150A42EE1E71D65300D8C476 /* ViewControllerLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42ED1E71D65300D8C476 /* ViewControllerLoad.swift */; };
 		15174FFD1E5A1BE800539953 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FF11E5A1BE800539953 /* Button.swift */; };
 		15174FFE1E5A1BE800539953 /* ButtonLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FF21E5A1BE800539953 /* ButtonLoad.swift */; };
 		15174FFF1E5A1BE800539953 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FF31E5A1BE800539953 /* Cell.swift */; };
@@ -71,6 +73,8 @@
 		150A42DD1E703F2600D8C476 /* RCTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTabBarController.swift; sourceTree = "<group>"; };
 		150A42DF1E70435C00D8C476 /* RCTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTableViewController.swift; sourceTree = "<group>"; };
 		150A42E11E70437700D8C476 /* TableViewControllerLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerLoad.swift; sourceTree = "<group>"; };
+		150A42EB1E71D64000D8C476 /* RCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCViewController.swift; sourceTree = "<group>"; };
+		150A42ED1E71D65300D8C476 /* ViewControllerLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLoad.swift; sourceTree = "<group>"; };
 		15174FF11E5A1BE800539953 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Protocols/Button.swift; sourceTree = "<group>"; };
 		15174FF21E5A1BE800539953 /* ButtonLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonLoad.swift; path = Protocols/ButtonLoad.swift; sourceTree = "<group>"; };
 		15174FF31E5A1BE800539953 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cell.swift; path = Protocols/Cell.swift; sourceTree = "<group>"; };
@@ -303,6 +307,8 @@
 				150A42DD1E703F2600D8C476 /* RCTabBarController.swift */,
 				150A42DF1E70435C00D8C476 /* RCTableViewController.swift */,
 				150A42E11E70437700D8C476 /* TableViewControllerLoad.swift */,
+				150A42EB1E71D64000D8C476 /* RCViewController.swift */,
+				150A42ED1E71D65300D8C476 /* ViewControllerLoad.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -524,6 +530,7 @@
 				151750131E5A216700539953 /* FileManager.swift in Sources */,
 				15FAA3DF1E62FC0900AAB1C6 /* Bundle+Ext.swift in Sources */,
 				B2D4F2951E3E772600106A97 /* Dictionary+Ext.swift in Sources */,
+				150A42EC1E71D64000D8C476 /* RCViewController.swift in Sources */,
 				151750001E5A1BE800539953 /* CellViewLoad.swift in Sources */,
 				6C97A8508F71471AE6AB02981B29D5D2 /* MBaaSKit-dummy.m in Sources */,
 				B253B25C1E4B7A2D00E86B9B /* Data+Ext.swift in Sources */,
@@ -533,6 +540,7 @@
 				15FAA3DB1E62FB1A00AAB1C6 /* Date+Ext.swift in Sources */,
 				B22538621E4755CD00DC0380 /* String+Ext.swift in Sources */,
 				B22538661E47567100DC0380 /* View+Ext.swift in Sources */,
+				150A42EE1E71D65300D8C476 /* ViewControllerLoad.swift in Sources */,
 				15FAA3DD1E62FBE000AAB1C6 /* ImageView+Ext.swift in Sources */,
 				B2D4F2931E3E771000106A97 /* KeyValuePair.swift in Sources */,
 				150A42DE1E703F2600D8C476 /* RCTabBarController.swift in Sources */,
