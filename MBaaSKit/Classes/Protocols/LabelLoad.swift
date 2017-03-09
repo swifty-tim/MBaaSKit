@@ -8,34 +8,15 @@
 
 import UIKit
 
-protocol LabelLoad {}
+public protocol LabelLoad {}
 
-public enum SKNSTextAlignment : Int {
+public extension LabelLoad where Self: UILabel {
     
-    
-    case left // Visually left aligned
-    
-    
-    case center // Visually centered
-    
-    case right // Visually right aligned
-    
-    /* !TARGET_OS_IPHONE */
-    // Visually right aligned
-    // Visually centered
-    
-    case justified // Fully-justified. The last line in a paragraph is natural-aligned.
-    
-    case natural // Indicates the default alignment for script
-}
-
-extension LabelLoad where Self: UILabel {
-    
-    func setupLabelView( className: UIViewController, name: String = "") {
+    public func setupLabelView( className: UIViewController, name: String = "") {
        self.setup(className: String(describing: type(of: className)), tagValue: name)
     }
     
-    func setupLabelView( className: UIView, name: String = "") {
+    public func setupLabelView( className: UIView, name: String = "") {
         self.setup(className: String(describing: type(of: className)), tagValue: name)
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RCTableView : UITableView, TableLoad {
+public class RCTableView : UITableView, TableLoad {
     
     
 }

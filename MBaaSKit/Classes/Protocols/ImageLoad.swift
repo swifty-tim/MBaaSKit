@@ -8,16 +8,16 @@
 
 import UIKit
 
-protocol ImageLoad {}
+public protocol ImageLoad {}
 
-extension ImageLoad where Self: UIImageView {
+public extension ImageLoad where Self: UIImageView {
     
-    func setupImageView( className: UIViewController, name: String = "" ) {
+    public func setupImageView( className: UIViewController, name: String = "" ) {
         self.setup(className: String(describing: type(of: className)), tagValue: name )
     }
     
     
-    func setupImageView( className: UIView, name: String = "") {
+    public func setupImageView( className: UIView, name: String = "") {
         self.setup(className: String(describing: type(of: className)), tagValue: name)
     }
     

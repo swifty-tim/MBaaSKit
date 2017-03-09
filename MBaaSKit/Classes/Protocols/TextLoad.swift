@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol TextLoad { }
+public protocol TextLoad { }
 
-extension TextLoad where Self: UITextField {
+public extension TextLoad where Self: UITextField {
     
     func setupLabelView( className: UIViewController, name:String = "" ) {
         self.setup(className: String(describing: type(of: className)), tagValue: name )

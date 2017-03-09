@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LabelView: UILabel, LabelLoad {
+public class RCLabelView: UILabel, LabelLoad {
 
     /*
     // Only override draw() if you perform custom drawing.

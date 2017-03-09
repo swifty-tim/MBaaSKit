@@ -9,9 +9,9 @@
 import UIKit
 
 
-protocol TableLoad {}
+public protocol TableLoad {}
 
-extension TableLoad where Self: UITableView {
+public extension TableLoad where Self: UITableView {
     
     func setupTableView( className: UIViewController, name:String = "" ) {
         self.setup(className: String(describing: type(of: className)), tagValue: name)

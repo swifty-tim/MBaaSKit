@@ -58,6 +58,11 @@ public class RCConfigManager {
         return RCFileManager.getJSONDict(parseKey: className, keyVal: objectName)
     }
     
+    class func getClassProperties(className: String  ) -> [String:AnyObject] {
+        
+        return RCFileManager.getJSONClassProperties(parseKey: className)
+    }
+    
     class func checkIfFilesExist() -> Bool {
         
         if RCFileManager.checkFilesExists(fileName: RCFile.readConfigJSON.rawValue)
@@ -66,7 +71,6 @@ public class RCConfigManager {
         } else {
             return false
         }
-        
     }
     
     class func getConfigVersion() {
@@ -77,6 +81,16 @@ public class RCConfigManager {
             }
         }
     }
+    
+    class func getConfigThemeVersion(theme:String ) {
+        
+        self.getConfigThemeVersion(theme:theme) { (completed, data) in
+            DispatchQueue.main.async {
+                
+            }
+        }
+    }
+
     
     
     class func updateConfigFiles() {
@@ -96,6 +110,62 @@ public class RCConfigManager {
         //self.checkAndGetVersion("version", version: version)
     }
 
+    
+    /**
+     getConfigThemeVersion
+     - parameters
+     - getCompleted: return value of success state
+     - data: return array of objects
+     */
+    class func getConfigThemeVersion(theme:String, getCompleted : @escaping (_ succeeded: Bool, _ message: String ) -> ()) {
+        
+        var version: String = ""
+        
+        if let buildVersion: AnyObject = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject? {
+            version = buildVersion as! String
+        }
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        
+        var key: String = ""
+        key = key.readPlistString(value: "APPKEY", "")
+        
+        let apiEndpoint = "/api/"+key+"/remote/" + version + "/" + theme
+        
+        let networkURL = url + apiEndpoint
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "GET"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                getCompleted(false, "error")
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            RCFileManager.writeJSONFile(jsonData: data as NSData, fileType: .config)
+            
+            self.updateConfigFiles()
+            
+            getCompleted(true, "success")
+            
+            }.resume()
+    }
+
+    
     
     /**
      getConfigVersion

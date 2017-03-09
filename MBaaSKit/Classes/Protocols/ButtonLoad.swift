@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol ButtonLoad { }
+public protocol ButtonLoad { }
 
-extension ButtonLoad where Self: UIButton {
+public extension ButtonLoad where Self: UIButton {
     
     /**
      - parameters:
@@ -18,7 +18,7 @@ extension ButtonLoad where Self: UIButton {
         - name: the name of the object instance
      
      */
-    mutating func setupButton( className: UIViewController, _ name: String = "" ) {
+    public mutating func setupButton( className: UIViewController, _ name: String = "" ) {
         
         self.setup(className: String(describing: type(of: className)), tagValue: name)
     }
@@ -29,11 +29,11 @@ extension ButtonLoad where Self: UIButton {
      - name: the name of the object instance
      
      */
-    func setupButton( className: UIView, _ name:String = "" ) {
+    public func setupButton( className: UIView, _ name:String = "" ) {
         self.setup(className: String(describing: type(of: className)), tagValue: name)
     }
     
-    func setup( className: String, tagValue : String ) {
+    private func setup( className: String, tagValue : String ) {
     
         
         var viewName = ""

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageView: UIImageView, ImageLoad {
+public class RCImageView: UIImageView, ImageLoad {
 
     /*
     // Only override draw() if you perform custom drawing.

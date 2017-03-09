@@ -8,6 +8,6 @@
 
 import UIKit
 
-class Button: UIButton, ButtonLoad {
+public class RCButton: UIButton, ButtonLoad {
 
 }

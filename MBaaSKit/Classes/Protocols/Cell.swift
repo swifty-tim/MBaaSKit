@@ -8,6 +8,6 @@
 
 import Foundation
 
-class RCTableViewCell: UITableViewCell, CellViewLoad {
+public class RCTableViewCell: UITableViewCell, CellViewLoad {
     
 }
