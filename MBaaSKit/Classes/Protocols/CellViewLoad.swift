@@ -27,7 +27,7 @@ public extension CellViewLoad where Self: UITableViewCell {
             viewName = String(self.tag)
         }
         
-        let dict = RCConfigManager.getClassProperties(className: viewName )
+        let dict = RCConfigManager.getObjectProperties(className: className, objectName: viewName)
         
         var fontName: String = ""
         var size : CGFloat = 0.0
@@ -37,11 +37,17 @@ public extension CellViewLoad where Self: UITableViewCell {
             case "textLabel_text" where dict.tryConvert(forKey: key) != "":
                 self.textLabel?.text = value as? String
                 break
+            case "textLabel_textColor" where dict.tryConvert(forKey: key) != "":
+                self.textLabel?.textColor = RCFileManager.readJSONColor(keyVal: value as! String)
+                break
             case "textLabel_BkgdColor" where dict.tryConvert(forKey: key) != "":
                 self.textLabel?.backgroundColor = RCFileManager.readJSONColor(keyVal: value as! String)
                 break
             case "detailLabel_text" where dict.tryConvert(forKey: key) != "":
                 self.detailTextLabel?.text = value as? String
+                break
+            case "detailLabel_textColor" where dict.tryConvert(forKey: key) != "":
+                self.detailTextLabel?.textColor = RCFileManager.readJSONColor(keyVal: value as! String)
                 break
             case "detailLabel_BkgdColor" where dict.tryConvert(forKey: key) != "":
                 self.detailTextLabel?.backgroundColor = RCFileManager.readJSONColor(keyVal: value as! String)
@@ -58,7 +64,7 @@ public extension CellViewLoad where Self: UITableViewCell {
             case "isMultipleTouchEnabled" where dict.tryConvert(forKey: key) != "":
                 self.isMultipleTouchEnabled = ((value as! Int)  == 1) ? true : false
                 break
-            case "isHidden":
+            case "isHidden" where dict.tryConvert(forKey: key) != "":
                 self.isHidden = ((value as! Int)  == 1) ? true : false
                 break
             case "isUserInteractionEnabled" where dict.tryConvert(forKey: key) != "":
