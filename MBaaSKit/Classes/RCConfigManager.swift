@@ -78,14 +78,14 @@ public class RCConfigManager {
 //     - getCompleted: return value of success state
 //     - data: return array of objects
 //     */
-//    public class func getConfigVersion() {
-//        
-//        self.getConfigVersion { (completed, data) in
-//            DispatchQueue.main.async {
-//                
-//            }
-//        }
-//    }
+    class func getConfigVersion() {
+        
+        self.getConfigVersion { (completed, data) in
+            DispatchQueue.main.async {
+                
+            }
+        }
+    }
 //    /**
 //     getConfigThemeVersion
 //     - parameters
