@@ -8,6 +8,6 @@
 
 import Foundation
 
-public class RCViewController: UIViewController, ViewControllerLoad {
+open class RCViewController: UIViewController, ViewControllerLoad {
     
 }

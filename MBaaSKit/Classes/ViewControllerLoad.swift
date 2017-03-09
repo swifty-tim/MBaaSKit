@@ -13,13 +13,12 @@ public protocol ViewControllerLoad { }
 public extension ViewControllerLoad where Self: UIViewController {
     
     /**
-     setupTableViewController
+     setupViewController
      - parameters:
      - className: put self
      - name: the name of the object instance
-     
      */
-    public func setupTableViewController( className: UIViewController, _ name: String = "" ) {
+    public func setupViewController( className: UIViewController, _ name: String = "" ) {
         
         self.setup(className: String(describing: type(of: className)), tagValue: name)
     }

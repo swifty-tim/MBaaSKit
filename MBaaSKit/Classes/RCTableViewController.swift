@@ -8,6 +8,6 @@
 
 import Foundation
 
-public class RCTableViewController: UITableViewController, TableViewControllerLoad {
+open class RCTableViewController: UITableViewController, TableViewControllerLoad {
     
 }
