@@ -36,7 +36,7 @@ public extension ButtonLoad where Self: UIButton {
     private func setup( className: String, tagValue : String ) {
     
         
-        var viewName = ""
+        var viewName = tagValue
         if tagValue.isEmpty {
             viewName = String(self.tag)
         }

@@ -47,6 +47,4 @@ public extension ImageLoad where Self: UIImageView {
             }
         }
     }
-    
-    
 }
