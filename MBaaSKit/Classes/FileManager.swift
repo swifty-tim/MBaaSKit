@@ -178,18 +178,14 @@ class RCFileManager {
                 }
                 if colorName == keyVal {
                     
-                    guard let red = nextColor["red"] as? Float else {
-                        break
-                    }
-                    guard let green = nextColor["green"] as? Float else {
-                        break
-                    }
-                    guard let blue = nextColor["blue"] as? Float else {
-                        break
-                    }
-                    guard let alpha = nextColor["alpha"] as? Float else {
-                        break
-                    }
+                    let red: Float = nextColor.tryConvert(forKey: "red")
+                    
+                    let green: Float = nextColor.tryConvert(forKey: "green")
+                    
+                    let blue: Float = nextColor.tryConvert(forKey: "blue")
+                    
+                    let alpha: Float = nextColor.tryConvert(forKey: "alpha")
+                    
                     //print(alpha)
                     returnColor =  UIColor(red: CGFloat(red)/255, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: CGFloat(alpha))
                     break
