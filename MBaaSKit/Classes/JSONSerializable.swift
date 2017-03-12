@@ -255,21 +255,33 @@ public extension TBJSONSerializable {
             returnObject = "\(name)" as AnyObject
         }
         
+        if name is Bool {
+            
+            guard let keyBool = name as? Bool else {
+                return "0"  as AnyObject
+            }
+            
+            returnObject = "0" as AnyObject
+            
+            if keyBool {
+                returnObject = "1"  as AnyObject
+            }
+        }
+        
         if name is Float {
             returnObject = "\(name)" as AnyObject
         }
         
         if name is Double {
-            returnObject = "\(name)" as AnyObject
+            returnObject =  "\(name)" as AnyObject
         }
         
         if name is CGFloat {
-            returnObject = "\(name)" as AnyObject
+            returnObject =  "\(name)" as AnyObject
         }
         
         return returnObject
     }
-    
     /**
      - parameters:
      - objectID: id of the object past in

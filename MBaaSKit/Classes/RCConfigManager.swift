@@ -44,6 +44,17 @@ public class RCConfigManager {
         return returnTranslation
     }
     
+    public class func getThemesList() -> [String] {
+        
+        let returnVal = [String]()
+        
+        guard let returnThemes = RCFileManager.readJSONThemesList() else {
+            return returnVal
+        }
+        
+        return returnThemes
+    }
+    
     public class func getMainSetting(name: String, defaultName: String = "") -> String {
         
         guard let returnSetting = RCFileManager.readJSONMainSettings(keyName: name ) else {
@@ -124,17 +135,25 @@ public class RCConfigManager {
         //self.checkAndGetVersion("version", version: version)
     }
     
-    public class func updateNavigationBar(className: String = "AppDelegate", objectName: String = "UINavigationBar" ) {
+    /**
+     updateNavigationBar
+     - parameters
+     - className: UIResponder self
+     - objectName: String
+     */
+    public class func updateNavigationBar(className: UIResponder, objectName: String = "UINavigationBar" ) {
         
-        let dict = RCConfigManager.getObjectProperties(className: className, objectName: objectName)
+        let dict = RCConfigManager.getObjectProperties(className:  String(describing: type(of: className)), objectName: objectName)
+        
+        UserDefaults.standard.set(String(describing: type(of: className)), forKey: "navClass")
         
         var fontName: String = ""
         var size : CGFloat = 0.0
         for (key, value) in dict {
             
             switch key {
-                //lightContent = 1 default = 0 dark
-            case "statusBarStyle" where dict.tryConvert(forKey: key) != "":
+            //lightContent = 1 default = 0 dark
+            case "statusBarStyle":
                 UIApplication.shared.statusBarStyle = UIStatusBarStyle(rawValue: (value as! Int))!
                 break
             case "barTintColor" where dict.tryConvert(forKey: key) != "":
@@ -144,7 +163,7 @@ public class RCConfigManager {
                 fontName = (value as! String)
                 break
             case "fontSize" where dict.tryConvert(forKey: key) != "":
-                size = value as! CGFloat
+                size = dict.tryConvert(forKey: "fontSize")
                 break
             case "tintColor" where dict.tryConvert(forKey: key) != "":
                 UINavigationBar.appearance().tintColor  = RCConfigManager.getColor(name: (value as! String), defaultColor: .black)
@@ -158,6 +177,57 @@ public class RCConfigManager {
         
         if !fontName.isEmpty && size != 0.0 {
             UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName: UIFont(name: fontName, size: size)!]
+        }
+        
+    }
+    
+    /**
+     *  updateNavigationBar
+     *
+     *  - parameter className:
+     *  - parameter className:  UIViewController self
+     *  - parameter objectName:     String
+     *  - parameter limit:    Optional. return no more than the supplied number of records.
+     *  - parameter batchSize:    Optional. Change number of automatically iterated documents.
+     *
+     *  - returns: the count of documents that would match a find() query. The count() method does not perform the find() operation but instead counts and returns the number of results that match a query.
+     */
+    public class func updateNavigationBar(className: UIViewController, objectName: String = "UINavigationBar" ) {
+        
+        let navClass = UserDefaults.standard.string(forKey: "navClass") ?? "AppDelegate"
+        
+        let dict = RCConfigManager.getObjectProperties(className: navClass, objectName: objectName)
+        
+        var fontName: String = ""
+        var size : CGFloat = 0.0
+        for (key, value) in dict {
+            
+            switch key {
+            //lightContent = 1 default = 0 dark
+            case "statusBarStyle":
+                UIApplication.shared.statusBarStyle = UIStatusBarStyle(rawValue: (value as! Int))!
+                break
+            case "barTintColor" where dict.tryConvert(forKey: key) != "":
+                className.navigationController?.navigationBar.barTintColor = RCConfigManager.getColor(name: (value as! String), defaultColor: .white)
+                break
+            case "font" where dict.tryConvert(forKey: key) != "":
+                fontName = (value as! String)
+                break
+            case "fontSize" where dict.tryConvert(forKey: key) != "":
+                size = dict.tryConvert(forKey: "fontSize")
+                break
+            case "tintColor" where dict.tryConvert(forKey: key) != "":
+                className.navigationController?.navigationBar.tintColor  = RCConfigManager.getColor(name: (value as! String), defaultColor: .white)
+                break
+            case "isTranslucent" where dict.tryConvert(forKey: key) != "":
+                className.navigationController?.navigationBar.isTranslucent = ((value as! Int)  == 1) ? true : false
+                break
+            default: break
+            }
+        }
+        
+        if !fontName.isEmpty && size != 0.0 {
+            className.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName: UIFont(name: fontName, size: size)!]
         }
         
     }

@@ -214,11 +214,11 @@ class RCFileManager {
         do {
             let parsedData = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! [String:Any]
             
-            guard let configObject = parsedData["config"] as? [String:String]  else {
-                return returnStr
-            }
+            //guard let configObject = parsedData["config"] as? [String:String]  else {
+            //    return returnStr
+            //}
             
-            guard let valueName = configObject[key] else {
+            guard let valueName = parsedData[key] as? String else {
                 return returnStr
             }
             
@@ -261,6 +261,32 @@ class RCFileManager {
         
         return returnStr
     }
+    
+    class func readJSONThemesList() -> [String]? {
+        
+        var returnStr: [String]?
+        
+        guard let jsonData = RCFileManager.readJSONFile(fileName: .readConfigJSON) else {
+            return returnStr
+        }
+        
+        do {
+            let parsedData = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! [String:Any]
+            
+            guard let translationList = parsedData["themes"] as? [String]  else {
+                return returnStr
+            }
+            
+            returnStr = translationList
+            
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        
+        return returnStr
+    }
+
     
     class func readJSONLanuageList() -> [String]? {
         
@@ -319,29 +345,22 @@ class RCFileManager {
     
     class func deleteJSONFileName( fileName: String ) -> Bool {
         
-        var returnBool = false
-        var fileNotFound = false
-        
-        let fileManager = FileManager.default
-        let tempFolderPath = NSTemporaryDirectory()
-        do {
-            let filePaths = try fileManager.contentsOfDirectory(atPath: tempFolderPath)
-            for filePath in filePaths {
-                //print(filePath)
-                if filePath == fileName {
-                    try fileManager.removeItem(atPath: NSTemporaryDirectory() + filePath)
-                    returnBool = true
-                    fileNotFound = false
-                    break
-                } else {
-                    fileNotFound = true
-                }
+        if checkFilesExists(fileName: fileName) {
+            
+            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+            let url = NSURL(fileURLWithPath: path)
+            let filePath = url.appendingPathComponent(fileName)?.path
+            let fileManager = FileManager.default
+            
+            do {
+                
+                try fileManager.removeItem(atPath: filePath!)
+            } catch {
+                print("Could not clear temp folder: \(error)")
+                return false
             }
-        } catch {
-            print("Could not clear temp folder: \(error)")
         }
-        
-        return returnBool || fileNotFound
+        return true
     }
     
     class func checkFilesExists( fileName: String) -> Bool {

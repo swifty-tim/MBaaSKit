@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MBaaSKit'
-  s.version          = '0.2.8.17'
+  s.version          = '0.2.8.19'
   s.summary          = 'MBaaSKit is a framework for connecting to MBaaSKit Sever.'
 
 # This description is used to generate tags and improve search results.
