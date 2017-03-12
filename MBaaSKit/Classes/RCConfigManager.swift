@@ -119,6 +119,44 @@ public class RCConfigManager {
         UserDefaults.standard.set(version, forKey: "version")
         //self.checkAndGetVersion("version", version: version)
     }
+    
+    public class func updateNavigationBar(className: String = "AppDelegate", objectName: String = "UINavigationBar" ) {
+        
+        let dict = RCConfigManager.getObjectProperties(className: className, objectName: objectName)
+        
+        var fontName: String = ""
+        var size : CGFloat = 0.0
+        for (key, value) in dict {
+            
+            switch key {
+                //lightContent = 1 default = 0 dark
+            case "statusBarStyle" where dict.tryConvert(forKey: key) != "":
+                UIApplication.shared.statusBarStyle = UIStatusBarStyle(rawValue: (value as! Int))!
+                break
+            case "barTintColor" where dict.tryConvert(forKey: key) != "":
+                UINavigationBar.appearance().barTintColor = RCConfigManager.getColor(name: (value as! String), defaultColor: .white)
+                break
+            case "font" where dict.tryConvert(forKey: key) != "":
+                fontName = (value as! String)
+                break
+            case "fontSize" where dict.tryConvert(forKey: key) != "":
+                size = value as! CGFloat
+                break
+            case "tintColor" where dict.tryConvert(forKey: key) != "":
+                UINavigationBar.appearance().tintColor  = RCConfigManager.getColor(name: (value as! String), defaultColor: .black)
+                break
+            case "isTranslucent" where dict.tryConvert(forKey: key) != "":
+                UINavigationBar.appearance().isTranslucent = ((value as! Int)  == 1) ? true : false
+                break
+            default: break
+            }
+        }
+        
+        if !fontName.isEmpty && size != 0.0 {
+            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName: UIFont(name: fontName, size: size)!]
+        }
+        
+    }
 
     
     /**

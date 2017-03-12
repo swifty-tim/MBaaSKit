@@ -413,6 +413,19 @@ class RCFileManager {
         }
     }
     
+    class func updateJSONFile( jsonData : NSData, fileType : RCFileType ) {
+        
+        switch fileType {
+        case .language:
+            
+            self.changeJSONFileName(oldName: RCFile.saveLangJSON.rawValue, newName: RCFile.readLangJSON.rawValue)
+            
+        default:
+            self.changeJSONFileName(oldName: RCFile.saveConfigJSON.rawValue, newName: RCFile.readConfigJSON.rawValue)
+        }
+    }
+
+    
     class func writeJSONFile( jsonData : NSData, fileType : RCFileType ) {
         
         var fileName: String = ""
@@ -422,13 +435,13 @@ class RCFileManager {
             //if RCFileManager.checkFilesExists(fileName: RCFile.readLangJSON.rawValue) {
             //    fileName = RCFile.saveLangJSON.rawValue
             //} else {
-            fileName = RCFile.readLangJSON.rawValue
+            fileName = RCFile.saveLangJSON.rawValue
         //}
         default:
             //if RCFileManager.checkFilesExists(fileName: RCFile.readConfigJSON.rawValue) {
             //    fileName = RCFile.saveConfigJSON.rawValue
             //} else {
-            fileName = RCFile.readConfigJSON.rawValue
+            fileName = RCFile.saveConfigJSON.rawValue
             //}
         }
         

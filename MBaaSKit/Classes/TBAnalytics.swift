@@ -18,7 +18,7 @@ public enum SendType: String {
     case Generic = "Generic"
 }
 
-public class TBAnalyitcs {
+public class TBAnalytics {
     
     class private var dateFormatter : DateFormatter {
         let dateFormatter = DateFormatter()

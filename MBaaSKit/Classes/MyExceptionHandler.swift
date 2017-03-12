@@ -88,7 +88,6 @@ public class MyException: NSObject {
                 tags["Device model"] = UIDevice.current.model as AnyObject?
             }
         #endif
-        
     }
     
     /**
