@@ -102,6 +102,10 @@ public class RCConfigManager {
 //    }
 
     
+    public class func updateConfigFileNames(fileType : RCFileType) {
+        
+       RCFileManager.updateJSONFile(fileType: .config)
+    }
     
     private class func updateConfigFiles() {
         //RCFileManager.changeJSONFileName(oldName: RCFile.saveConfigJSON.rawValue, newName: RCFile.readConfigJSON.rawValue)

@@ -413,7 +413,7 @@ class RCFileManager {
         }
     }
     
-    class func updateJSONFile( jsonData : NSData, fileType : RCFileType ) {
+    class func updateJSONFile( fileType : RCFileType ) {
         
         switch fileType {
         case .language:
