@@ -10,6 +10,17 @@ import UIKit
 
 public class RCConfigManager {
     
+    public func initConfigManager() -> Bool {
+        
+        if RCFileManager.checkFilesExists(fileName: RCFile.readConfigJSON.rawValue)
+            && RCFileManager.checkFilesExists(fileName: RCFile.readLangJSON.rawValue) {
+            
+            return true
+        } else {
+            return false
+        }
+    }
+    
     private func checkAndGetVersion(_ key: String, version: String) {
         
         UserDefaults.standard.set(key, forKey: version)
@@ -232,6 +243,61 @@ public class RCConfigManager {
         
     }
 
+    /**
+     getConfigThemeVersion
+     - parameters
+     - getCompleted: return value of success state
+     - data: return array of objects
+     */
+    public class func getConfigLanguageVersion(name:String, getCompleted : @escaping (_ succeeded: Bool, _ message: String ) -> ()) {
+        
+        var version: String = ""
+        
+        if let buildVersion: AnyObject = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject? {
+            version = buildVersion as! String
+        }
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        
+        var key: String = ""
+        key = key.readPlistString(value: "APPKEY", "")
+        
+        let apiEndpoint = "/api/"+key+"/translation/" + name + "/" + version
+        
+        let networkURL = url + apiEndpoint
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "GET"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                getCompleted(false, "error")
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            RCFileManager.writeJSONFile(jsonData: data as NSData, fileType: .config)
+            
+            self.updateConfigFiles()
+            
+            getCompleted(true, "success")
+            
+            }.resume()
+    }
+
+    
     
     /**
      getConfigThemeVersion

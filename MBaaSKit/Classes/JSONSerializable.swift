@@ -288,7 +288,6 @@ public extension TBJSONSerializable {
      - postCompleted: return value of success state
      
      */
-    
     public func getInBackground<T:TBJSONSerializable>(_ objectID: String, ofType type:T.Type , appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: T) -> ()) {
         
         let className = ("\(type(of: self))")
@@ -673,9 +672,7 @@ public extension Array where Element: TBJSONSerializable {
      - query: Dictionary of objects to find : ("name":"Timothy")
      - getCompleted: return value of success state
      - data: return array of objects
-     
      */
-    
     public func getFilteredInBackground<T:TBJSONSerializable>(ofType type:T.Type,  query: [String:AnyObject], appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
         
         let className = ("\(type(of: T()))")
