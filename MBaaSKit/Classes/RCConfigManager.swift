@@ -10,7 +10,7 @@ import UIKit
 
 public class RCConfigManager {
     
-    public func initConfigManager() -> Bool {
+    public func checkConfigLangFilesExist() -> Bool {
         
         if RCFileManager.checkFilesExists(fileName: RCFile.readConfigJSON.rawValue)
             && RCFileManager.checkFilesExists(fileName: RCFile.readLangJSON.rawValue) {
@@ -85,14 +85,13 @@ public class RCConfigManager {
         return RCFileManager.getJSONClassProperties(parseKey: className)
     }
     
-    public class func checkIfFilesExist() -> Bool {
-        
-        if RCFileManager.checkFilesExists(fileName: RCFile.readConfigJSON.rawValue)
-            && RCFileManager.checkFilesExists(fileName: RCFile.readLangJSON.rawValue) {
-            return true
-        } else {
-            return false
-        }
+    public class func checkIfLanguageExist() -> Bool {
+        return RCFileManager.checkFilesExists(fileName: RCFile.readLangJSON.rawValue)
+    }
+
+    
+    public class func checkIfConfigExist() -> Bool {
+        return RCFileManager.checkFilesExists(fileName: RCFile.readConfigJSON.rawValue)
     }
 //    /**
 //     getConfigVersion
