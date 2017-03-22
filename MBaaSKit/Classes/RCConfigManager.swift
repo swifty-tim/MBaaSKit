@@ -126,7 +126,7 @@ public class RCConfigManager {
     
     public class func updateConfigFileNames(fileType : RCFileType) {
         
-       RCFileManager.updateJSONFile(fileType: .config)
+       RCFileManager.updateJSONFile(fileType: fileType)
     }
     
     private class func updateConfigFiles() {
