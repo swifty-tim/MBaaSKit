@@ -288,9 +288,9 @@ public class RCConfigManager {
                 return
             }
             
-            RCFileManager.writeJSONFile(jsonData: data as NSData, fileType: .config)
+            RCFileManager.writeJSONFile(jsonData: data as NSData, fileType: .language)
             
-            self.updateConfigFiles()
+            //self.updateConfigFiles()
             
             getCompleted(true, "success")
             
