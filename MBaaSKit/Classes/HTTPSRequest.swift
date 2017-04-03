@@ -95,6 +95,14 @@ public class HTTPSRequest {
         let url = URL(string: url)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        
+        var serverKey: String = ""
+        serverKey = serverKey.readPlistString(value: "SERVERKEY")
+        
+        if serverKey != "" {
+            request.setValue(serverKey, forHTTPHeaderField: "authen_key")
+        }
+        
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
         
