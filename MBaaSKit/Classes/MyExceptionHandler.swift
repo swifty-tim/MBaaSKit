@@ -110,8 +110,8 @@ public class MyException: NSObject {
                 }
             #endif
             
-            UserDefaults.standard.set(exception.name.rawValue, forKey: "name")  //Integer
-            UserDefaults.standard.set(exception.reason ?? "Nil", forKey: "reason") //setObject
+            UserDefaults.standard.set(exception.name.rawValue, forKey: "name")
+            UserDefaults.standard.set(exception.reason ?? "Nil", forKey: "reason")
             UserDefaults.standard.set(exception.userInfo ?? "Nil", forKey: "userInfo" )
             UserDefaults.standard.set(exception.callStackReturnAddresses , forKey: "stackReturnAddress")
             UserDefaults.standard.set(exception.callStackSymbols , forKey: "stackSymbols")
@@ -249,6 +249,7 @@ public class MyException: NSObject {
         
         let request = NSMutableURLRequest(url: NSURL(string: networkURL)! as URL)
         let session = URLSession.shared
+        
         request.httpMethod = "POST"
         
         do {
@@ -257,6 +258,10 @@ public class MyException: NSObject {
             //err = error
             request.httpBody = nil
         }
+        
+        #if DEBUG
+            request.addValue("1", forHTTPHeaderField: "testMode")
+        #endif
         
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -19,9 +19,26 @@ public class HTTPSRequest {
     
     class func httpPostFileRequest(path : String, endPoint : String, postCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
-        let urlPath = ""//readPlistURL() + endPoint
         
         let request: URLRequest
+        
+        var parameters = [String: AnyObject]()
+        
+        #if DEBUG
+            parameters["testMode"] = "1" as AnyObject
+        #endif
+        
+        if let buildVersion: AnyObject = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject? {
+            parameters["appVersion"] = buildVersion
+        }
+        
+        let parameterString = parameters.stringFromHttpParameters()
+        
+        var urlPath = path
+        
+        if parameters.count > 0 {
+             urlPath = urlPath + "?" + parameterString
+        }
         
         do {
             request = try createRequest(filePath: path, url: urlPath)
@@ -79,6 +96,7 @@ public class HTTPSRequest {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
         
         //let path1 = Bundle.main.path(forResource: "image1", ofType: "png")!
         request.httpBody = try createBody(with: parameters, filePathKey: "file", paths: [filePath], boundary: boundary)

@@ -282,6 +282,25 @@ public extension TBJSONSerializable {
         
         return returnObject
     }
+    
+    private func getParamValues() -> (Bool, String) {
+        
+        var parameters = [String: AnyObject]()
+        
+        #if DEBUG
+            parameters["testMode"] = "1" as AnyObject
+        #endif
+        
+        if let buildVersion: AnyObject = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject? {
+            parameters["appVersion"] = buildVersion
+        }
+        
+        let parameterString = parameters.stringFromHttpParameters()
+        
+        return ( parameters.count > 0, "?" + parameterString )
+
+    }
+    
     /**
      - parameters:
      - objectID: id of the object past in
@@ -310,7 +329,13 @@ public extension TBJSONSerializable {
         let apiEndpoint = "/api/"+key+"/storage/"
 
         
-        let networkURL = url + apiEndpoint + className + "/"+objectID
+        var networkURL = url + apiEndpoint + className + "/"+objectID
+        
+        let ( paramExist, paramValues) = getParamValues()
+        
+        if paramExist {
+            networkURL = networkURL + paramValues
+        }
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")
@@ -323,6 +348,10 @@ public extension TBJSONSerializable {
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
+        
+        #if DEBUG
+            request.addValue("1", forHTTPHeaderField: "testMode")
+        #endif
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
@@ -379,7 +408,13 @@ public extension TBJSONSerializable {
         let apiEndpoint = "/api/"+key+"/storage/"
 
         
-        let networkURL = url + apiEndpoint + tableName
+        var networkURL = url + apiEndpoint + tableName
+        
+        let ( paramExist, paramValues) = getParamValues()
+        
+        if paramExist {
+            networkURL = networkURL + paramValues
+        }
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")
@@ -390,6 +425,10 @@ public extension TBJSONSerializable {
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
+        
+        #if DEBUG
+            request.addValue("1", forHTTPHeaderField: "testMode")
+        #endif
         
         var genericTable : GenericTable?
         
@@ -500,7 +539,13 @@ public extension TBJSONSerializable {
         
         let apiEndpoint = "/api/"+key+"/storage/"
         
-        let networkURL = url + apiEndpoint + collectioName + "/" + objectID
+        var networkURL = url + apiEndpoint + collectioName + "/" + objectID
+        
+        let ( paramExist, paramValues) = getParamValues()
+        
+        if paramExist {
+            networkURL = networkURL + paramValues
+        }
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")
@@ -511,7 +556,9 @@ public extension TBJSONSerializable {
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
-        
+        #if DEBUG
+            request.addValue("1", forHTTPHeaderField: "testMode")
+        #endif
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
@@ -560,7 +607,13 @@ public extension TBJSONSerializable {
         let apiEndpoint = "/api/"+key+"/storage/"
 
         
-        let networkURL = url + apiEndpoint + className + "/" + objectID
+        var networkURL = url + apiEndpoint + className + "/" + objectID
+        
+        let ( paramExist, paramValues) = getParamValues()
+        
+        if paramExist {
+            networkURL = networkURL + paramValues
+        }
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")
@@ -571,7 +624,9 @@ public extension TBJSONSerializable {
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
-        
+        #if DEBUG
+            request.addValue("1", forHTTPHeaderField: "testMode")
+        #endif
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
@@ -629,7 +684,13 @@ public extension TBJSONSerializable {
             let apiEndpoint = "/api/"+key+"/storage/"
 
             
-            let networkURL = url + apiEndpoint + className
+            var networkURL = url + apiEndpoint + className
+            
+            let ( paramExist, paramValues) = getParamValues()
+            
+            if paramExist {
+                networkURL = networkURL + paramValues
+            }
             
             let dic = newData
             
@@ -643,7 +704,9 @@ public extension TBJSONSerializable {
                 //err = error
                 request.httpBody = nil
             }
-            
+            #if DEBUG
+                request.addValue("1", forHTTPHeaderField: "testMode")
+            #endif
             
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -664,6 +727,25 @@ public extension TBJSONSerializable {
 }
 
 public extension Array where Element: TBJSONSerializable {
+    
+    
+    private func getParamValues() -> (Bool, String) {
+        
+        var parameters = [String: AnyObject]()
+        
+        #if DEBUG
+            parameters["testMode"] = "1" as AnyObject
+        #endif
+        
+        if let buildVersion: AnyObject = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject? {
+            parameters["appVersion"] = buildVersion
+        }
+        
+        let parameterString = parameters.stringFromHttpParameters()
+        
+        return ( parameters.count > 0, "?" + parameterString )
+        
+    }
     
     /**
      getFilteredInBackground
@@ -691,9 +773,14 @@ public extension Array where Element: TBJSONSerializable {
         
         let apiEndpoint = "/api/"+key+"/storage/query/"
 
-        let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
         
-        let networkURL = url + apiEndpoint + className + "?appversion=" + appVersion
+        var networkURL = url + apiEndpoint + className
+        
+        let ( paramExist, paramValues) = getParamValues()
+        
+        if paramExist {
+            networkURL = networkURL + paramValues
+        }
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")
@@ -704,6 +791,10 @@ public extension Array where Element: TBJSONSerializable {
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
+        
+        #if DEBUG
+            request.addValue("1", forHTTPHeaderField: "testMode")
+        #endif
         
         
         do {
@@ -798,10 +889,14 @@ public extension Array where Element: TBJSONSerializable {
         }
         
         let apiEndpoint = "/api/"+key+"/storage/"
-
-        let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
         
-        let networkURL = url + apiEndpoint + className + "?appversion=" + appVersion
+        var networkURL = url + apiEndpoint + className
+        
+        let ( paramExist, paramValues) = getParamValues()
+        
+        if paramExist {
+            networkURL = networkURL + paramValues
+        }
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")
@@ -812,6 +907,10 @@ public extension Array where Element: TBJSONSerializable {
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
+        
+        #if DEBUG
+            request.addValue("1", forHTTPHeaderField: "testMode")
+        #endif
         
         var allT = [T]()
         

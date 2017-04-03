@@ -44,6 +44,25 @@ public class TBNotification {
         }
     }
     
+    
+    private func getParamValues() -> (Bool, String) {
+        
+        var parameters = [String: AnyObject]()
+        
+        #if DEBUG
+            parameters["testMode"] = "1" as AnyObject
+        #endif
+        
+        if let buildVersion: AnyObject = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject? {
+            parameters["appVersion"] = buildVersion
+        }
+        
+        let parameterString = parameters.stringFromHttpParameters()
+        
+        return ( parameters.count > 0, "?" + parameterString )
+    }
+
+    
     /**
      Send Notificaitons
      - parameters:
@@ -67,7 +86,14 @@ public class TBNotification {
         
         let apiEndpoint = "/api/" + key
         
-        let networkURL =  url + apiEndpoint + "/notification/"
+        var networkURL =  url + apiEndpoint + "/notification/"
+        
+        let ( paramExist, paramValues) = getParamValues()
+        
+        if paramExist {
+            networkURL = networkURL + paramValues
+        }
+    
         
         if (self.deviceID == "" && self.message == "") || (self.userID == "" && self.message == "") {
             notificationCompleted(false, "values not set")
@@ -82,6 +108,10 @@ public class TBNotification {
         let request = NSMutableURLRequest(url: endpoint as URL)
         let session = URLSession.shared
         request.httpMethod = "POST"
+        
+        #if DEBUG
+            request.addValue("1", forHTTPHeaderField: "testMode")
+        #endif
         
         let dict : [String:AnyObject] = [
             "deviceId":self.deviceID as AnyObject,
