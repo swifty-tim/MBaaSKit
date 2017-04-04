@@ -302,10 +302,14 @@ public extension TBJSONSerializable {
     }
     
     /**
-     - parameters:
-     - objectID: id of the object past in
-     - postCompleted: return value of success state
+     Gets objects in background
      
+     - parameter objectID: String
+     - parameter type: object type -> Test.self
+     - parameter appKey: String default is empty
+     - parameter: completion A closure containing the result and data
+     
+     - returns: No return value
      */
     public func getInBackground<T:TBJSONSerializable>(_ objectID: String, ofType type:T.Type , appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: T) -> ()) {
         
@@ -387,10 +391,13 @@ public extension TBJSONSerializable {
     }
     
     /**
-     - parameters:
-     - type: struct name
-     - getCompleted: return value of success state
-     - data: return array of objects
+     Gets generic object in background
+     
+     - parameter tableName: String
+     - parameter appKey: String default is empty
+     - parameter: completion A closure containing the result and data of typye: GenericTable
+     
+     - returns: No return value
      */
     
     public func getGenericAllInBackground(tableName: String, appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: GenericTable? ) -> ()) {
@@ -530,6 +537,16 @@ public extension TBJSONSerializable {
         return false
     }
     
+    /**
+     Generic Remove object in background
+     
+     - parameter objectID: String -> Key
+     - parameter collectioName: String
+     - parameter appKey: String default is empty
+     - parameter: completion A closure containing the result and data
+     
+     - returns: No return value
+     */
     public func genericRemoveInBackground(_ objectID: String, collectioName: String, appKey: String = "", deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
         var url: String = ""
@@ -595,7 +612,15 @@ public extension TBJSONSerializable {
         
     }
     
-    
+    /**
+     Remove object in background
+     
+     - parameter objectID: String
+     - parameter appKey: String default is empty
+     - parameter: completion A closure containing the result and data
+     
+     - returns: No return value
+     */
     
     public func removeInBackground(_ objectID: String, appKey: String = "", deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
@@ -666,7 +691,15 @@ public extension TBJSONSerializable {
         
     }
     
-    
+    /**
+     Creates new object in background
+     
+     - parameter objectID: String
+     - parameter appKey: String default is empty
+     - parameter: completion A closure containing the result and data
+     
+     - returns: No return value
+     */
     public func sendInBackground(_ objectID: String, appKey: String = "", postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
         let className = ("\(type(of: self))")
@@ -764,12 +797,15 @@ public extension Array where Element: TBJSONSerializable {
     }
     
     /**
-     getFilteredInBackground
-     - parameters:
-     - type: struct name
-     - query: Dictionary of objects to find : ("name":"Timothy")
-     - getCompleted: return value of success state
-     - data: return array of objects
+     Gets Filtered objects in background
+     
+     - parameter objectID: String
+     - parameter type: object type -> Test.self
+     - parameter query: [String:AnyObject] -> query params in dictionary format
+     - parameter appKey: String default is empty
+     - parameter: completion A closure containing the result and array of objects
+     
+     - returns: No return value
      */
     public func getFilteredInBackground<T:TBJSONSerializable>(ofType type:T.Type,  query: [String:AnyObject], appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
         
@@ -886,11 +922,13 @@ public extension Array where Element: TBJSONSerializable {
     
     
     /**
-     getAllInBackground
-     - parameters:
-     - type: struct name
-     - getCompleted: return value of success state
-     - data: return array of objects
+     Gets all objects in background
+     
+     - parameter type: object type -> Test.self
+     - parameter appKey: String default is empty
+     - parameter: completion A closure containing the result and array of type objects
+     
+     - returns: No return value
      */
     
     public func getAllInBackground<T:TBJSONSerializable>(ofType type:T.Type, appKey: String = "", getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {

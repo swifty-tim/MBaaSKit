@@ -65,11 +65,10 @@ public class TBNotification {
     
     /**
      Send Notificaitons
-     - parameters:
-     - appKey:
-     - notificationCompleted: return value of success state
-     - succeeded:
-     - data: message back if sent
+     - parameter appKey:
+     - paramater notificationCompleted: return value of success state
+     - paramater succeeded:
+     - paramter: callback data: message back if sent
      */
     public func sendNotification(_ appKey: String = "", notificationCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         

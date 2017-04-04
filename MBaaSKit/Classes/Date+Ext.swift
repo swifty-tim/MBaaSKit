@@ -11,6 +11,13 @@ import UIKit
 
 public extension Date {
     
+    /**
+     Converts date to string to default format yyyy-MM-dd'T'HH:mm:ss.SSSZ
+     
+     - parameter format: String
+     
+     - returns: String date
+     */
     public func toDateString(_ dateFormat: String = "yyyy-MM-dd'T'HH:mm:ss.SSSZ" ) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = dateFormat
@@ -19,6 +26,11 @@ public extension Date {
         return timeString
     }
     
+    /**
+     Converts time to string format HH:mm
+     
+     - returns: String date
+     */
     public func toTimeString() -> String {
         
         let formatter = DateFormatter()
@@ -28,6 +40,11 @@ public extension Date {
         return timeString
     }
     
+    /**
+     Retrieves hour from date
+     
+     - returns: Integer hour
+     */
     public func hour() -> Int {
         
         let calendar = Calendar.current
@@ -35,7 +52,11 @@ public extension Date {
         return hour
     }
     
-    
+    /**
+     Retrieves minute from date
+     
+     - returns: Intger minute
+     */
     public func minute() -> Int {
         
         let calendar = Calendar.current
@@ -43,6 +64,11 @@ public extension Date {
         return minute
     }
     
+    /**
+     Retrieves day from date
+     
+     - returns: Integer day
+     */
     public func day() -> Int {
         
         let calendar = Calendar.current
@@ -50,6 +76,11 @@ public extension Date {
         return minute
     }
     
+    /**
+     Retrieves weekday from date
+     
+     - returns: Integer weekday
+     */
     public func weekday() -> Int {
         
         let calendar = Calendar.current
