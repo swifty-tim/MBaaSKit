@@ -10,6 +10,8 @@ import Foundation
 #if os(iOS)
     import UIKit
     import MobileCoreServices
+#elseif os(watchOS)
+    
 #else
     import CoreServices
 #endif
