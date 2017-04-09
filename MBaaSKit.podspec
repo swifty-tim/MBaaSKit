@@ -4,11 +4,11 @@
 #
 # Any lines starting with a # are optional, but their use is encouraged
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
+
 
 Pod::Spec.new do |s|
   s.name             = 'MBaaSKit'
-  s.version          = '0.2.8.27'
+  s.version          = '0.2.8.28'
   s.summary          = 'MBaaSKit is a framework for connecting to MBaaSKit Sever.'
 
 # This description is used to generate tags and improve search results.
@@ -28,8 +28,8 @@ This framework provides tools to handle sending and retrieving objects from the 
   s.source           = { :git => 'https://github.com/collegboi/MBaaSKit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
-
+  s.ios.deployment_target = '8.0' 
+  s.watchos.deployment_target = '2.0'
   s.source_files = 'MBaaSKit/Classes/**/*'
   
   # s.resource_bundles = {
