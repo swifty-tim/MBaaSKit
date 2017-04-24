@@ -7,7 +7,12 @@
 //
 
 import Foundation
-import UIKit
+
+#if os(iOS)
+    import UIKit
+#elseif os(watchOS)
+    import WatchKit
+#endif
 
 enum RCFile : String {
     case saveConfigJSON = "configFile1.json"

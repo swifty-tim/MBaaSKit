@@ -11,7 +11,7 @@ import Foundation
     import UIKit
     import MobileCoreServices
 #elseif os(watchOS)
-    
+    import WatchKit
 #else
     import CoreServices
 #endif
@@ -69,8 +69,8 @@ public class HTTPSRequest {
                 // }
             } catch {
                 postCompleted(false, (error.localizedDescription) )
-                let responseString = String(data: data!, encoding: .utf8)
-                print("responseString = \(responseString)")
+                //_ = String(data: data!, encoding: .utf8)
+                //print("responseString = \(String(describing: responseString))")
             }
         }
         task.resume()
@@ -102,7 +102,7 @@ public class HTTPSRequest {
         serverKey = serverKey.readPlistString(value: "SERVERKEY")
         
         if serverKey != "" {
-            request.setValue(serverKey, forHTTPHeaderField: "authen_key")
+            request.setValue(serverKey, forHTTPHeaderField: "Authorization")
         }
         
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
