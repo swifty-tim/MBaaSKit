@@ -349,6 +349,7 @@ public extension TBJSONSerializable {
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
         
+        
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }

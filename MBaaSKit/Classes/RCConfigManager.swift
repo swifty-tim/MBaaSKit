@@ -277,7 +277,16 @@ public class RCConfigManager {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
-        //if let token = _currentUser?.currentToken {
+        //if let token = _currentUser?.
+        
+        var serverKey: String = ""
+        serverKey = serverKey.readPlistString(value: "SERVERKEY")
+        
+        if serverKey != "" {
+            request.setValue(serverKey, forHTTPHeaderField: "Authorization")
+        }
+        
+//        currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
         
@@ -333,6 +342,14 @@ public class RCConfigManager {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
+        
+        var serverKey: String = ""
+        serverKey = serverKey.readPlistString(value: "SERVERKEY")
+        
+        if serverKey != "" {
+            request.setValue(serverKey, forHTTPHeaderField: "Authorization")
+        }
+        
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -389,6 +406,14 @@ public class RCConfigManager {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
+        
+        var serverKey: String = ""
+        serverKey = serverKey.readPlistString(value: "SERVERKEY")
+        
+        if serverKey != "" {
+            request.setValue(serverKey, forHTTPHeaderField: "Authorization")
+        }
+        
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
